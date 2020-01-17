@@ -69,7 +69,7 @@ FOLDER_NAME := $(notdir $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LI
 export FOLDER_NAME
 
 # Define path to HELPER_SCRIPTS
-HELPER_SCRIPTS=$(FOLDER_NAME)
+HELPER_SCRIPTS="$(FOLDER_NAME)/scripts"
 
 # Define path to ENV_FILE
 ORIGINAL_ENV_FILE=.env
@@ -107,13 +107,40 @@ endif
 
 ## Initial project setup
 up:
-	@echo "up"
+	@./$(HELPER_SCRIPTS)/setup/up.bash
+
+## Start developing
+start:
+	@./$(HELPER_SCRIPTS)/develop/start.bash
+
+## Stop developing
+stop:
+	@./$(HELPER_SCRIPTS)/develop/stop.bash
+
+## Restart developing
+restart:
+	@make stop
+	@make start
+
+## Backup
+backup:
+	@./$(HELPER_SCRIPTS)/data/backup.bash
+
+## Restore
+restore:
+	@./$(HELPER_SCRIPTS)/data/restore.bash
+
+## Synchronize from environment 'staging' to 'dev'
+staging-to-dev:
+	@./$(HELPER_SCRIPTS)/sync/staging-to-dev.bash
+
+## Synchronize from environment 'production' to 'dev'
+production-to-dev:
+	@./$(HELPER_SCRIPTS)/sync/production-to-dev.bash
 
 ## List environmental variables
 test: 
-	@echo $(ORIGINAL_ENV_FILE)
-	@echo $(ENV_FILE)
-	@./$(HELPER_SCRIPTS)/test.bash
+	@./$(HELPER_SCRIPTS)/env/list.bash
 
 ###############
 # END methods #

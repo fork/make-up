@@ -85,8 +85,8 @@ More features [here](#features).
    # create Makefile
    touch Makefile
 
-   # Create reference to ./Makefile in ../Makefile (replace path-to)
-   printf "include path-to/Makefile" >> Makefile
+   # Create reference to ./Makefile in ../Makefile
+   printf "include make-up/Makefile" >> Makefile
    ```
 
 1. Create a **.env** file. This is where we will put **sensible information like passwords** etc. To avoid having this information in your project, make sure .env files are never added to your repository.
@@ -190,7 +190,7 @@ Begin every bash script with the following lines:
 
 # load helper
 my_dir="$(dirname "$0")"
-source "$my_dir/helper.bash"
+source "$my_dir/../../helper.bash"
 ```
 
 After having the [./helper.bash](./helper.bash) loaded, you may access gloabl variables like colors, text-transforms, etc.

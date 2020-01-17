@@ -2,13 +2,11 @@
 
 # load helper
 my_dir="$(dirname "$0")"
-source "$my_dir/helper.bash"
+source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} List all available environment variables"
+echo "  ${BLUE}TASK${NC} Make-up"
 echo
-
-env
 
 echo
 echo "  ${GREEN}SUCCESS${NC} Done"
