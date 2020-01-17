@@ -8,9 +8,19 @@ echo
 echo "  ${BLUE}TASK${NC} Install Craft CMS 3"
 echo
 
-mkdir -p site
+rm -rf site
+mkdir site
 docker-compose exec php composer create-project craftcms/craft /var/www/html
 
-echo
-echo "  ${GREEN}SUCCESS${NC} Done"
-echo
+# run env.bash
+$my_dir/env.bash
+
+if [ -d "site/config" ]; then
+  echo
+  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo
+else
+  echo
+  echo "  ${RED}ERROR${NC} Could verify Craft installation"
+  echo
+fi

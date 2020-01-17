@@ -60,6 +60,9 @@ More features [here](#features).
     - [Overwrite an existing command](#overwrite-an-existing-command)
     - [Create a new bash script](#create-a-new-bash-script)
   - [Supported software](#supported-software)
+  - [Troubleshooting](#troubleshooting)
+    - [Craft](#craft)
+      - [Installation](#installation)
 
 <!-- /TOC -->
 
@@ -74,7 +77,7 @@ More features [here](#features).
 
    ```bash
    cd my-project
-   git submodule add git@lab.fork.de:fork/craft-docker-setup-scripts.git
+   git submodule add https://github.com/fork/make-up
    ```
 
 1. Create a new file called "Makefile"
@@ -209,6 +212,21 @@ Make-up offers support for:
 - Docker
 - NPM
 - Yarn
+
+## Troubleshooting
+
+### Craft
+
+#### Installation
+
+During installation this error message may come up:
+
+```
+[RuntimeException]                                                  
+Invalid working directory specified, /var/www/html does not exist.
+```
+
+Solve this by removing all docker containers.
 
 ---
 

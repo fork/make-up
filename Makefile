@@ -107,28 +107,46 @@ endif
 
 ## Initial project setup
 up:
-	@./$(HELPER_SCRIPTS)/setup/up.bash
+	@./$(HELPER_SCRIPTS)/start/start.bash
+	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
+	@make help
 
 ## Start developing
 start:
-	@./$(HELPER_SCRIPTS)/develop/start.bash
+	@./$(HELPER_SCRIPTS)/start/start.bash
 
 ## Stop developing
 stop:
-	@./$(HELPER_SCRIPTS)/develop/stop.bash
+	@./$(HELPER_SCRIPTS)/stop/stop.bash
 
 ## Restart developing
 restart:
 	@make stop
 	@make start
 
+## Run composer (Example: `$ make composer require foo/bar`)
+composer:
+	@./$(HELPER_SCRIPTS)/composer/composer.bash $(ARGS)
+
+## Enter shell
+shell:
+	@./$(HELPER_SCRIPTS)/shell/enter.bash
+
+## Enter database shell
+db-shell:
+	@./$(HELPER_SCRIPTS)/db-shell/enter.bash
+
 ## Backup
 backup:
-	@./$(HELPER_SCRIPTS)/data/backup.bash
+	@./$(HELPER_SCRIPTS)/backup/create.bash
 
 ## Restore
 restore:
-	@./$(HELPER_SCRIPTS)/data/restore.bash
+	@./$(HELPER_SCRIPTS)/backup/restore.bash
+
+## Deploy
+deploy:
+	@./$(HELPER_SCRIPTS)/deploy/info.bash
 
 ## Synchronize from environment 'staging' to 'dev'
 staging-to-dev:
@@ -138,9 +156,9 @@ staging-to-dev:
 production-to-dev:
 	@./$(HELPER_SCRIPTS)/sync/production-to-dev.bash
 
-## List environmental variables
+## Run tests
 test: 
-	@./$(HELPER_SCRIPTS)/env/list.bash
+	@./$(HELPER_SCRIPTS)/test/env.bash
 
 ###############
 # END methods #
