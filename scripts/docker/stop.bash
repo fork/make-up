@@ -8,7 +8,11 @@ echo
 echo "  ${BLUE}TASK${NC} 🐳 Stopping docker"
 echo
 
+# stop
 docker-compose stop
+
+# down
+docker-compose down -v
 
 echo
 echo "  ${GREEN}SUCCESS${NC} Done"
