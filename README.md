@@ -1,21 +1,21 @@
-# XXX
+# Make-up
 
 **Being a web developer is hard.** You often find yourself asking stuff like 'How do I setup this project?', 'What do I need to compile?', 'How do I deploy this?' and 'How do I get live data to my local machine?'.
 
 Such things can really slow down the development process, because you need to know things – or at least read about it in the docs. Yeah.
 
-By covering the necessary requirements for the development process automatically, XXX leaves you more time for creativity.
+By covering the necessary requirements for the development process automatically, Make-up leaves you more time for creativity.
 
-No matter what project you are working on, no matter what software is used: XXX makes it work (@see [Supported software](#supported-software)).
+No matter what project you are working on, no matter what software is used: Make-up makes it work (@see [Supported software](#supported-software)).
 
-XXX does stuff like:
+Make-up does stuff like:
 
 <details>
   <summary>
     Initial project setup after git clone
   </summary>
   
-  XXX installs all required tools to get you started with development.
+  Make-up installs all required tools to get you started with development.
 </details>
 
 <details>
@@ -23,7 +23,7 @@ XXX does stuff like:
     Start developing process
   </summary>
   
-  XXX controls all necessary processes so that you can focus on programming.
+  Make-up controls all necessary processes so that you can focus on programming.
 </details>
 
 <details>
@@ -31,7 +31,7 @@ XXX does stuff like:
     Deployment
   </summary>
   
-  XXX shows you where and how you can successfully deploy your project.
+  Make-up shows you where and how you can successfully deploy your project.
 </details>
 
 <details>
@@ -39,7 +39,7 @@ XXX does stuff like:
     Sync between environments
   </summary>
   
-  XXX synchronizes databases and files between different environments.
+  Make-up synchronizes databases and files between different environments.
 </details>
 
 More features [here](#features).
@@ -50,8 +50,8 @@ More features [here](#features).
 
 <!-- TOC -->
 
-- [XXX](#xxx)
-  - [Ad XXX to your project](#ad-xxx-to-your-project)
+- [Make-up](#make-up)
+  - [Ad Make-up to your project](#ad-make-up-to-your-project)
   - [Features](#features)
   - [Customization](#customization)
     - [Add a new command](#add-a-new-command)
@@ -66,9 +66,9 @@ More features [here](#features).
 ---
 
 
-## Ad XXX to your project
+## Ad Make-up to your project
 
-1. Add XXX as a _submodule_ to your project:
+1. Add Make-up as a _submodule_ to your project:
 
    <!-- TODO: pfad anpassen -->
 
@@ -81,14 +81,35 @@ More features [here](#features).
 
    ```bash
    cd my-project
+   
+   # create Makefile
    touch Makefile
+
+   # Create reference to ./Makefile in ../Makefile (replace path-to)
+   printf "include path-to/Makefile" >> Makefile
    ```
 
-1. Include [./Makefile](./Makefile) into [./../Makefile](./../Makefile) by adding the following to [./../Makefile](./../Makefile):
+1. Create a **.env** file. This is where we will put **sensible information like passwords** etc. To avoid having this information in your project, make sure .env files are never added to your repository.
 
-   ```Makefile
-   include path-to/Makefile
-   ```
+    ```bash
+    cd my-project
+
+    # create .env file
+    touch .env
+
+    # create .gitignore
+    touch .gitignore
+
+    # remove .env files from version control
+    printf "\n.env" >> .gitignore
+    ```
+
+    If your project already contains a **.env** file you may continue using the existing one. Instead of creating a new file (example above), you will have to create a reference to that existing file.
+
+    ```bash
+    # create symbolic link to your .env file
+    ln -s path-to/.env .env
+    ```
 
 ## Features
 
@@ -122,7 +143,7 @@ You may run a bash script from a Makefile command like so:
 @./path-to/foo.bash
 ```
 
-If you want to run an existing script from XXX, use the following:
+If you want to run an existing script from Make-up, use the following:
 
 ```Makefile
 @./$(HELPER_SCRIPTS)/foo.bash
@@ -182,7 +203,7 @@ chmod +x my-script.bash
 
 ## Supported software
 
-XXX offers support for:
+Make-up offers support for:
 
 - Craft CMS 3
 - Docker
