@@ -4,24 +4,6 @@
 my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
-# Craft CMS 3 (install)
-if [ ! -d "site/config" ]; then
-  echo
-  echo "  ${BLUE}TASK${NC} Craft CMS 3"
-  echo
-
-  echo -n "Would you like to install Craft CMS 3 (y/n)? "
-  read answer
-
-  if [ "$answer" != "${answer#[Yy]}" ]; then
-    $my_dir/install.bash
-  else
-    echo
-    echo "  ${YELLOW}WARNING${NC} Skipped"
-    echo
-  fi
-fi
-
 # Craft CMS (composer install)
 if [ -d "site" ]; then
   $my_dir/env.bash
@@ -40,4 +22,31 @@ if [ -d "site" ]; then
     echo "  ${RED}ERROR${NC} Could not find Craft"
     echo
   fi
+
+  echo
+  echo "  ${BLUE}TASK${NC} Display project information"
+  echo
+
+  # craft
+  echo "  → ${BOLD}Frontend${NC}"
+  echo "    http://$FOLDER_NAME.localhost/"
+
+  # craft backend
+  echo
+  echo "  → ${BOLD}Backend${NC}"
+  echo "    http://$FOLDER_NAME.localhost/admin"
+
+  # mailhog
+  echo
+  echo "  → ${BOLD}Mailhog${NC}"
+  echo "    http://mailhog.$FOLDER_NAME.localhost"
+
+  # env-file
+  echo 
+  echo "  → ${BOLD}Env-file${NC}"
+  echo "    ${ENV_FILE}"
+
+  echo
+  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo
 fi
