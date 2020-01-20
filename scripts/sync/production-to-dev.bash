@@ -9,7 +9,7 @@ echo "  ${BLUE}TASK${NC} Synchronize database and uploads from environment ${GRE
 echo
 
 echo
-echo "  ${BLUE}TASK${NC} Synchronize database"
+echo "  ${BLUE}TASK${NC} Get database from ${GREEN}production${NC}"
 echo
 
 # todo: try mysql
@@ -25,7 +25,7 @@ ssh -T "$E_PRODUCTION_SSH_USER@$E_PRODUCTION_SSH_HOST" 'rm' "$E_PRODUCTION_PROJE
 
 if [ -f "$E_PRODUCTION_DB_DUMP_NAME" ]; then
   # restore database
-  make db-restore $E_PRODUCTION_DB_DUMP_NAME
+  $my_dir/../backup/restore.bash $E_PRODUCTION_DB_DUMP_NAME
 
   # remove dump
   rm $E_PRODUCTION_DB_DUMP_NAME
