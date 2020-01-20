@@ -63,6 +63,7 @@ More features [here](#features).
   - [Troubleshooting](#troubleshooting)
     - [Craft](#craft)
       - [Installation](#installation)
+  - [To Dos](#to-dos)
 
 <!-- /TOC -->
 
@@ -253,6 +254,12 @@ Invalid working directory specified, /var/www/html does not exist.
 ```
 
 Solve this by removing all docker containers.
+
+## To Dos
+
+- **20.01.2020** aktuell muss man 2x `make up` laufen lassen, damit die .env korrekt erzeugt wird
+- **20.01.2020** `make production-to-dev` muss hinreichend getestet werden
+- **20.01.2020** `make staging-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 
 ---
 
