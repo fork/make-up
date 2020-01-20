@@ -51,7 +51,7 @@ More features [here](#features).
 <!-- TOC -->
 
 - [Make-up](#make-up)
-  - [Ad Make-up to your project](#ad-make-up-to-your-project)
+  - [Add Make-up to your project](#add-make-up-to-your-project)
   - [Features](#features)
   - [Customization](#customization)
     - [Add a new command](#add-a-new-command)
@@ -68,23 +68,27 @@ More features [here](#features).
 
 ---
 
-
-## Ad Make-up to your project
+## Add Make-up to your project
 
 1. Add Make-up as a _submodule_ to your project:
-
-   <!-- TODO: pfad anpassen -->
 
    ```bash
    cd my-project
    git submodule add https://github.com/fork/make-up
    ```
 
+   or get the latest files if Make-up is already listed in your [../.gitmodules](../.gitmodules):
+
+   ```bash
+   cd my-project
+   git submodule update
+   ```
+
 1. Create a new file called "Makefile"
 
    ```bash
    cd my-project
-   
+
    # create Makefile
    touch Makefile
 
@@ -92,34 +96,56 @@ More features [here](#features).
    printf "include make-up/Makefile" >> Makefile
    ```
 
-1. Create a **.env** file. This is where we will put **sensible information like passwords** etc. To avoid having this information in your project, make sure .env files are never added to your repository.
+1. Create a **.env** file. This is where we will put **sensible information like passwords** etc. To avoid having this information in your project, make sure _.env_ files are never added to your repository.
 
-    ```bash
-    cd my-project
+   ```bash
+   cd my-project
 
-    # create .env file
-    touch .env
+   # create .env file
+   touch .env
 
-    # create .gitignore
-    touch .gitignore
+   # create .gitignore
+   touch .gitignore
 
-    # remove .env files from version control
-    printf "\n.env" >> .gitignore
+   # remove .env files from version control
+   printf "\n.env" >> .gitignore
+   ```
+
+   If your project already contains a _.env_ file you may continue using the existing one. Instead of creating a new file (example above), you will have to create a reference to that existing file:
+
+   ```bash
+   cd my-project
+   
+   # create symbolic link to your .env file
+   ln -s path-to/.env .env
+   ```
+
+1. Add this to your Readme
+
+    ```md
+    **This project uses [Make-up](http://github.com/fork/make-up).**
     ```
 
-    If your project already contains a **.env** file you may continue using the existing one. Instead of creating a new file (example above), you will have to create a reference to that existing file.
+1. Add this to the description of your project setup
 
-    ```bash
-    # create symbolic link to your .env file
-    ln -s path-to/.env .env
+    ```md
+    After `$ git clone` run this command to enable Make-up in your project:
+
+    `$ git submodule update`
+
+    Setup Make-up as described [here](make-up/README.md#add-make-up-to-your-project).
     ```
+
 
 ## Features
 
-To list all available commands, simply run
+To list all available commands run
 
 ```bash
-$ make help
+cd my-project
+
+# Help
+make help
 ```
 
 ## Customization
@@ -222,7 +248,7 @@ Make-up offers support for:
 During installation this error message may come up:
 
 ```
-[RuntimeException]                                                  
+[RuntimeException]
 Invalid working directory specified, /var/www/html does not exist.
 ```
 
