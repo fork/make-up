@@ -2,14 +2,14 @@
 # BEGIN Helper #
 ################
 
-# Text transforms 
+# Text transforms
 # @see https://linux.101hacks.com/ps1-examples/prompt-color-using-tput/
-# Usage: 
+# Usage:
 #   echo "${REV}Foo${NC}"
 BOLD := $(shell tput -Txterm bold)
 REV := $(shell tput -Txterm rev)
 
-# Colour 
+# Colour
 # @see https://gist.github.com/prwhite/8168133#gistcomment-2278355
 # Usage:
 #   echo "Roses are ${RED}red${NC}, violets are ${BLUE}blue${NC}."
@@ -23,12 +23,12 @@ WHITE := $(shell tput -Txterm setaf 7)
 
 # Reset text transoform or colour
 # @see https://gist.github.com/prwhite/8168133#gistcomment-2278355
-# Usage: 
+# Usage:
 #   echo "${YELLOW}Foo${NC}"
 NC := $(shell tput -Txterm sgr0)
 
 # The help function enables us to use a special comment syntax (##).
-# If we place a comment with ## one line above a Makefile method, 
+# If we place a comment with ## one line above a Makefile method,
 # it will be listed in `$ make help`.
 # Usage:
 #   ## This line will appear in `$ make help`
@@ -105,6 +105,10 @@ endif
 # BEGIN methods #
 #################
 
+## Display project information
+info:
+	@./$(HELPER_SCRIPTS)/info/info.bash
+
 ## Initial project setup
 up:
 	@./$(HELPER_SCRIPTS)/start/start.bash
@@ -157,7 +161,7 @@ production-to-dev:
 	@./$(HELPER_SCRIPTS)/sync/production-to-dev.bash
 
 ## Run tests
-test: 
+test:
 	@./$(HELPER_SCRIPTS)/test/env.bash
 
 ###############
