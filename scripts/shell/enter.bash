@@ -12,7 +12,7 @@ ok=false
 
 # try docker
 if [ -d "docker" ]; then
-  docker-compose exec php /bin/sh
+  $my_dir/../docker/shell.bash
   ok=true
 fi
 
