@@ -4,11 +4,12 @@
 my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
+file="site/.env"
+
 # Craft CMS (composer install)
 if [ -d "site" ]; then
   # setup environment
-  file="site/.env"
-  if [! -f "$file" ]; then
+  if [ ! -f "$file" ]; then
     $my_dir/env.bash
   fi
   
