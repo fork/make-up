@@ -16,6 +16,3 @@ if [ -d "docker" ]; then
   # try craft (requires docker)
   $my_dir/../craft/start.bash
 fi
-
-# try node_modules
-$my_dir/node_modules.bash

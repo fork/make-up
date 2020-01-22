@@ -115,10 +115,12 @@ up:
 	@./$(HELPER_SCRIPTS)/craft/env.bash
 	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
 	@make help
+	@./$(HELPER_SCRIPTS)/frontend/node_modules.bash
 
 ## Start developing
 start:
 	@./$(HELPER_SCRIPTS)/start/start.bash
+	@./$(HELPER_SCRIPTS)/frontend/node_modules.bash
 
 ## Stop developing
 stop:
