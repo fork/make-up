@@ -12,18 +12,8 @@ ok=false
 
 # try docker
 if [ -d "docker" ]; then
-  docker-compose exec php composer --working-dir=/var/www/html install
-
-  if [ -d "site/vendor" ]; then
-    echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
-    echo
-    ok=true
-  else
-    echo
-    echo "  ${RED}ERROR${NC} Could not verify composer installation: site/vendor not found."
-    echo
-  fi
+  $my_dir/../docker/composer-install.bash
+  ok=true
 fi
 
 if [ "$ok" = true ]; then

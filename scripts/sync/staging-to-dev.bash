@@ -12,6 +12,8 @@ echo
 echo "  ${BLUE}TASK${NC} Get database from ${GREEN}staging${NC}"
 echo
 
+E_STAGING_DB_DUMP_NAME=staging.sql.gz
+
 # todo: try mysql
 
 # dump database

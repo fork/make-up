@@ -12,7 +12,6 @@ ok=false
 
 # try docker
 if [ -d "docker" ]; then
-  # stop docker container
   $my_dir/../docker/stop.bash
   ok=true
 fi

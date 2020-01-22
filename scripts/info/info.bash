@@ -10,6 +10,12 @@ echo
 
 ok=false
 
+# try docker
+if [ -d "docker" ]; then
+  $my_dir/../docker/info.bash
+  ok=true
+fi
+
 # try craft
 if [ -d "site/config" ]; then
   $my_dir/../craft/info.bash

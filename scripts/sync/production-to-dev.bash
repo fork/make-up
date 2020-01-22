@@ -12,6 +12,8 @@ echo
 echo "  ${BLUE}TASK${NC} Get database from ${GREEN}production${NC}"
 echo
 
+E_PRODUCTION_DB_DUMP_NAME=production.sql.gz
+
 # todo: try mysql
 
 # dump database

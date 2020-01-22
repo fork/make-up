@@ -12,7 +12,7 @@ ok=false
 
 # try docker
 if [ -d "docker" ]; then
-  docker-compose exec db $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE
+  $my_dir/../docker/db-shell.bash
   ok=true
 fi
 

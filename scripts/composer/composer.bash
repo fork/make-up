@@ -13,7 +13,7 @@ ARGS=$@
 
 # try docker
 if [ -d "docker" ]; then
-  docker-compose exec php composer --working-dir=/var/www/html $ARGS
+  $my_dir/../docker/composer-run.bash $ARGS
   ok=true
 fi
 

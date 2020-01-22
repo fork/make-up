@@ -13,7 +13,7 @@ if [ -d "docker" ]; then
   # up docker container
   $my_dir/../docker/up.bash
 
-  # try craft
+  # try craft (requires docker)
   $my_dir/../craft/start.bash
 fi
 

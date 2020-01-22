@@ -8,43 +8,20 @@ echo
 echo "  ${BLUE}TASK${NC} Restore data"
 echo
 
+ok=false
+
 # try docker
 if [ -d "docker" ]; then
-  echo
-  echo "  ${BLUE}TASK${NC} 🐳 Enter database shell in docker container"
-  echo
+  $my_dir/../docker/restore.bash
+  ok=true
+fi
 
-  DUMP_NAME=$1
-  BACKUPS_DIR=backups
-
-  if [ -z "$DUMP_NAME" ]; then
-    # restore latest
-    DUMP_NAME=$BACKUPS_DIR/`ls -t1 backups/|head -n 1`
-    echo
-    echo "  → ${BOLD}Restoring latest dump${NC}"
-    echo "    $DUMP_NAME"
-  else
-    # restore from DUMP_NAME
-    echo
-    echo "  → ${BOLD}Restoring dump${NC}"
-    echo "    $DUMP_NAME"
-  fi
-
-  # create temporary copy from DUMP_NAME
-  gzip -d -c $DUMP_NAME > craft-temp.sql.tmp
-
-  # import
-  docker exec -i $(docker-compose ps -q db) $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE < craft-temp.sql.tmp
-
-  # remove temporary files
-  rm craft-temp.sql.tmp
-
+if [ "$ok" = true ]; then
   echo
   echo "  ${GREEN}SUCCESS${NC} Done"
   echo
+else
+  echo
+  echo "  ${RED}ERROR${NC} Could not find a method to execute command"
+  echo
 fi
-
-
-echo
-echo "  ${GREEN}SUCCESS${NC} Done"
-echo

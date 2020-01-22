@@ -21,22 +21,20 @@ E_DEV_UPLOADS=$INITIAL_UPLOADS
 # Environment 'staging' on dev.4rk.de
 E_STAGING_SSH_USER=USER
 E_STAGING_SSH_HOST=HOST
-E_STAGING_PROJECT_HOME=/path-to/$FOLDER_NAME
-E_STAGING_DB_DUMP_NAME=staging.sql.gz
+E_STAGING_PROJECT_HOME=PROJECT_HOME
 E_STAGING_DB_PASS=PASSWORD
 E_STAGING_DB_USER=DB_USER
 E_STAGING_DB_NAME=DB_NAME
-E_STAGING_UPLOADS=/path-to/$FOLDER_NAME/$INITIAL_UPLOADS
+E_STAGING_UPLOADS=UPLOADS
 
 # Environment 'production' on production server;
 E_PRODUCTION_SSH_USER=USER
 E_PRODUCTION_SSH_HOST=HOST
-E_PRODUCTION_PROJECT_HOME=/path-to/$FOLDER_NAME
-E_PRODUCTION_DB_DUMP_NAME=production.sql.gz
+E_PRODUCTION_PROJECT_HOME=PROJECT_HOME
 E_PRODUCTION_DB_PASS=PASSWORD
 E_PRODUCTION_DB_USER=DB_USER
 E_PRODUCTION_DB_NAME=DB_NAME
-E_PRODUCTION_UPLOADS=/path-to/$FOLDER_NAME/$INITIAL_UPLOADS
+E_PRODUCTION_UPLOADS=UPLOADS
 
 # Default Site URL
 DEFAULT_SITE_URL="http://$FOLDER_NAME.localhost"
@@ -80,7 +78,7 @@ fi
 
 if [ -f "$file" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Neuen Sicherheitsschlüssel für Craft generieren$file"
+  echo "  ${BLUE}TASK${NC} Generating a security key in $file"
 
   # Generating a security key
   ./site/craft setup/security-key
@@ -111,21 +109,183 @@ if [ -f "$file" ]; then
   sed 's#DB_PASSWORD=""#DB_PASSWORD="craft"#' $file > tmp && mv tmp $file; \
   sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX="craft"#' $file > tmp && mv tmp $file; \
 
-  # Ask for value E_STAGING_DB_PASS
-  echo "  ${MAGENTA}QUESTION${NC} Where are your uploads (default: site/web/uploads)?"
+  # Ask for a value
+  VARIABLE_NAME="E_DEV_UPLOADS"
+  DEFAULT_VALUE="site/web/uploads"
+  QUESTION="Set relative path to uploads for ${WHITE}dev${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
-    sed 's#E_DEV_UPLOADS='$INITIAL_UPLOADS'#E_DEV_UPLOADS='"$answer"'#' $file > tmp && mv tmp $file; \
-    sed 's#E_STAGING_UPLOADS=/var/www/html/'$FOLDER_NAME'/'$INITIAL_UPLOADS'#E_STAGING_UPLOADS=/var/www/html/'"$FOLDER_NAME"'/'"$answer"'#' $file > tmp && mv tmp $file; \
-    sed 's#E_PRODUCTION_UPLOADS=/path-to/'$FOLDER_NAME'/'$INITIAL_UPLOADS'#E_PRODUCTION_UPLOADS=/path-to/'"$FOLDER_NAME"'/'"$answer"'#' $file > tmp && mv tmp $file; \
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
     echo
   fi
 
-  # Ask for value E_STAGING_DB_PASS
-  echo "  ${MAGENTA}QUESTION${NC} What is the database password for staging (default: PASSWORD)?"
+  # Ask for a value
+  VARIABLE_NAME="E_STAGING_SSH_USER"
+  DEFAULT_VALUE="USER"
+  QUESTION="Set SSH user for ${YELLOW}staging${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
-    sed 's#E_STAGING_DB_PASS=PASSWORD#E_STAGING_DB_PASS='"$answer"'#' $file > tmp && mv tmp $file; \
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+  
+  # Ask for a value
+  VARIABLE_NAME="E_STAGING_SSH_HOST"
+  DEFAULT_VALUE="HOST"
+  QUESTION="Set SSH host for ${YELLOW}staging${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for a value
+  VARIABLE_NAME="E_STAGING_PROJECT_HOME"
+  DEFAULT_VALUE="PROJECT_HOME"
+  QUESTION="Set path to project home for ${YELLOW}staging${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for a value
+  VARIABLE_NAME="E_STAGING_UPLOADS"
+  DEFAULT_VALUE="UPLOADS"
+  QUESTION="Set absolute path to uploads for ${YELLOW}staging${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+  
+  # Ask for a value
+  VARIABLE_NAME="E_STAGING_DB_PASS"
+  DEFAULT_VALUE="PASSWORD"
+  QUESTION="Set database password for ${YELLOW}staging${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for a value
+  VARIABLE_NAME="E_STAGING_DB_USER"
+  DEFAULT_VALUE="DB_USER"
+  QUESTION="Set database user for ${YELLOW}staging${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+  
+  # Ask for a value
+  VARIABLE_NAME="E_STAGING_DB_NAME"
+  DEFAULT_VALUE="DB_NAME"
+  QUESTION="Set database name for ${YELLOW}staging${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for a value
+  VARIABLE_NAME="E_PRODUCTION_SSH_USER"
+  DEFAULT_VALUE="USER"
+  QUESTION="Set SSH user for ${GREEN}production${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+  
+  # Ask for a value
+  VARIABLE_NAME="E_PRODUCTION_SSH_HOST"
+  DEFAULT_VALUE="HOST"
+  QUESTION="Set SSH host for ${GREEN}production${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for a value
+  VARIABLE_NAME="E_PRODUCTION_PROJECT_HOME"
+  DEFAULT_VALUE="PROJECT_HOME"
+  QUESTION="Set path to project home for ${GREEN}production${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for a value
+  VARIABLE_NAME="E_PRODUCTION_UPLOADS"
+  DEFAULT_VALUE="UPLOADS"
+  QUESTION="Set absolute path to uploads for ${GREEN}production${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+  
+  # Ask for a value
+  VARIABLE_NAME="E_PRODUCTION_DB_PASS"
+  DEFAULT_VALUE="PASSWORD"
+  QUESTION="Set database password for ${GREEN}production${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for a value
+  VARIABLE_NAME="E_PRODUCTION_DB_USER"
+  DEFAULT_VALUE="DB_USER"
+  QUESTION="Set database user for ${GREEN}production${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+  
+  # Ask for a value
+  VARIABLE_NAME="E_PRODUCTION_DB_NAME"
+  DEFAULT_VALUE="DB_NAME"
+  QUESTION="Set database name for ${GREEN}production${NC}"
+
+  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file > tmp && mv tmp $file; \
     echo
   fi
 
