@@ -27,5 +27,5 @@ if [ -d "site" ]; then
   # env-file
   echo
   echo "  → ${BOLD}Env-file${NC}"
-  echo "    ${ENV_FILE}"
+  echo "    site/.env"
 fi

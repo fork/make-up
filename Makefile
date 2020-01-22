@@ -115,6 +115,7 @@ up:
 	@./$(HELPER_SCRIPTS)/craft/env.bash
 	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
 	@make help
+	@touch .env
 	@./$(HELPER_SCRIPTS)/frontend/node_modules.bash
 
 ## Start developing
