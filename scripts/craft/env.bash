@@ -19,15 +19,14 @@ cat << EOF >> $file
 E_DEV_UPLOADS=$INITIAL_UPLOADS
 
 # Environment 'staging' on dev.4rk.de
-E_STAGING_SSH_USER=administrator
-E_STAGING_SSH_HOST=dev.4rk.de
-E_STAGING_PROJECT_HOME=/var/www/html/$FOLDER_NAME
-E_STAGING_INFRASTRUCTURE_PATH=/var/www/infrastructure
+E_STAGING_SSH_USER=USER
+E_STAGING_SSH_HOST=HOST
+E_STAGING_PROJECT_HOME=/path-to/$FOLDER_NAME
 E_STAGING_DB_DUMP_NAME=staging.sql.gz
 E_STAGING_DB_PASS=PASSWORD
-E_STAGING_DB_USER=de.4rk.$FOLDER_NAME
-E_STAGING_DB_NAME=de.4rk.$FOLDER_NAME
-E_STAGING_UPLOADS=/var/www/html/$FOLDER_NAME/$INITIAL_UPLOADS
+E_STAGING_DB_USER=DB_USER
+E_STAGING_DB_NAME=DB_NAME
+E_STAGING_UPLOADS=/path-to/$FOLDER_NAME/$INITIAL_UPLOADS
 
 # Environment 'production' on production server;
 E_PRODUCTION_SSH_USER=USER
@@ -44,85 +43,100 @@ DEFAULT_SITE_URL="http://$FOLDER_NAME.localhost"
 EOF
 }
 
-# check if $file exists
-if [ ! -f "$file" ]; then
+if [ -f "$file" ]; then
   echo
-  echo "  ${YELLOW}WARNING${NC} $file not found, generating a new one."
-  echo
-
-  echo
-  echo "  ${BLUE}TASK${NC} Create $file from $file_example"
+  echo "  ${YELLOW}WARNING${NC} Existing $file found, creating backup"
   echo
 
-  if [ -f "$file_example" ]; then
-    # create new .env file
-    cp $file_example $file
-  fi
+  cp $file $file_backup
 
-  if [ -f "$file" ]; then
+  if [ -f "$file_backup" ]; then
     echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
+    echo "  ${GREEN}Success${NC} Created $file_backup from $file"
     echo
-
-    echo
-    echo "  ${BLUE}TASK${NC} Neuen Sicherheitsschlüssel für Craft generieren$file"
-
-    # Generating a security key
-    ./site/craft setup/security-key
-
-    echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
-    echo
-    
-    echo
-    echo "  ${BLUE}TASK${NC} Make injections to $file"
-    echo
-
-    # make injections
-    injections
-
-    echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
-    echo
-    
-    echo
-    echo "  ${BLUE}TASK${NC} Make replacements in $file"
-    echo
-
-    # fill in data for environment: dev
-    sed 's#DB_SERVER="localhost"#DB_SERVER="db"#' $file > tmp && mv tmp $file; \
-    sed 's#DB_DATABASE=""#DB_DATABASE="craft"#' $file > tmp && mv tmp $file; \
-    sed 's#DB_USER="root"#DB_USER="craft"#' $file > tmp && mv tmp $file; \
-    sed 's#DB_PASSWORD=""#DB_PASSWORD="craft"#' $file > tmp && mv tmp $file; \
-    sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX="craft"#' $file > tmp && mv tmp $file; \
-
-    # Ask for value E_STAGING_DB_PASS
-    echo "  ${MAGENTA}QUESTION${NC} Where are your uploads (default: site/web/uploads)?"
-    read -p "  " answer
-    if [ -n "$answer" ]; then
-      sed 's#E_DEV_UPLOADS='$INITIAL_UPLOADS'#E_DEV_UPLOADS='"$answer"'#' $file > tmp && mv tmp $file; \
-      sed 's#E_STAGING_UPLOADS=/var/www/html/'$FOLDER_NAME'/'$INITIAL_UPLOADS'#E_STAGING_UPLOADS=/var/www/html/'"$FOLDER_NAME"'/'"$answer"'#' $file > tmp && mv tmp $file; \
-      sed 's#E_PRODUCTION_UPLOADS=/path-to/'$FOLDER_NAME'/'$INITIAL_UPLOADS'#E_PRODUCTION_UPLOADS=/path-to/'"$FOLDER_NAME"'/'"$answer"'#' $file > tmp && mv tmp $file; \
-      echo
-    fi
-
-    # Ask for value E_STAGING_DB_PASS
-    echo "  ${MAGENTA}QUESTION${NC} What is the database password for staging (default: PASSWORD)?"
-    read -p "  " answer
-    if [ -n "$answer" ]; then
-      sed 's#E_STAGING_DB_PASS=PASSWORD#E_STAGING_DB_PASS='"$answer"'#' $file > tmp && mv tmp $file; \
-      echo
-    fi
-
-    # tell the user that he/she has to provide information for production
-    echo "  ${WHITE}INFO${NC} Please visit $file and fill in missing information"
   else
     echo
-    echo "  ${RED}ERROR${NC} Could not create $file from $file_example"
+    echo "  ${RED}ERROR${NC} Could not create $file_backup from $file"
     echo
   fi
+fi
+
+echo
+echo "  ${BLUE}TASK${NC} Create $file from $file_example"
+echo
+
+if [ -f "$file_example" ]; then
+  # create new .env file
+  cp $file_example $file
+  
+  echo
+  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo
 else 
   echo
-  echo "  ${YELLOW}WARNING${NC} Existing $file found"
+  echo "  ${RED}ERROR${NC} $file_example not found. Craft installation is corrupted."
+  echo
+fi
+
+if [ -f "$file" ]; then
+  echo
+  echo "  ${BLUE}TASK${NC} Neuen Sicherheitsschlüssel für Craft generieren$file"
+
+  # Generating a security key
+  ./site/craft setup/security-key
+
+  echo
+  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo
+  
+  echo
+  echo "  ${BLUE}TASK${NC} Make injections to $file"
+  echo
+
+  # make injections
+  injections
+
+  echo
+  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo
+  
+  echo
+  echo "  ${BLUE}TASK${NC} Make replacements in $file"
+  echo
+
+  # fill in data for environment: dev
+  sed 's#DB_SERVER="localhost"#DB_SERVER="db"#' $file > tmp && mv tmp $file; \
+  sed 's#DB_DATABASE=""#DB_DATABASE="craft"#' $file > tmp && mv tmp $file; \
+  sed 's#DB_USER="root"#DB_USER="craft"#' $file > tmp && mv tmp $file; \
+  sed 's#DB_PASSWORD=""#DB_PASSWORD="craft"#' $file > tmp && mv tmp $file; \
+  sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX="craft"#' $file > tmp && mv tmp $file; \
+
+  # Ask for value E_STAGING_DB_PASS
+  echo "  ${MAGENTA}QUESTION${NC} Where are your uploads (default: site/web/uploads)?"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#E_DEV_UPLOADS='$INITIAL_UPLOADS'#E_DEV_UPLOADS='"$answer"'#' $file > tmp && mv tmp $file; \
+    sed 's#E_STAGING_UPLOADS=/var/www/html/'$FOLDER_NAME'/'$INITIAL_UPLOADS'#E_STAGING_UPLOADS=/var/www/html/'"$FOLDER_NAME"'/'"$answer"'#' $file > tmp && mv tmp $file; \
+    sed 's#E_PRODUCTION_UPLOADS=/path-to/'$FOLDER_NAME'/'$INITIAL_UPLOADS'#E_PRODUCTION_UPLOADS=/path-to/'"$FOLDER_NAME"'/'"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # Ask for value E_STAGING_DB_PASS
+  echo "  ${MAGENTA}QUESTION${NC} What is the database password for staging (default: PASSWORD)?"
+  read -p "  " answer
+  if [ -n "$answer" ]; then
+    sed 's#E_STAGING_DB_PASS=PASSWORD#E_STAGING_DB_PASS='"$answer"'#' $file > tmp && mv tmp $file; \
+    echo
+  fi
+
+  # tell the user that he/she has to provide information for production
+  echo "  ${WHITE}INFO${NC} Please visit $file and fill in missing information"
+
+  echo
+  echo "  ${GREEN}Success${NC} Done"
+  echo
+else
+  echo
+  echo "  ${RED}ERROR${NC} Could not create $file from $file_example"
   echo
 fi

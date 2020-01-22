@@ -112,6 +112,7 @@ info:
 ## Initial project setup
 up:
 	@./$(HELPER_SCRIPTS)/start/start.bash
+	@./$(HELPER_SCRIPTS)/craft/env.bash
 	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
 	@make help
 

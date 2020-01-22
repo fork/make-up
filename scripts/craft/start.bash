@@ -7,8 +7,11 @@ source "$my_dir/../../helper.bash"
 # Craft CMS (composer install)
 if [ -d "site" ]; then
   # setup environment
-  $my_dir/env.bash
-
+  file="site/.env"
+  if [! -f "$file" ]; then
+    $my_dir/env.bash
+  fi
+  
   # check if we need a 'composer install' if craft is already included
   if [ ! -d "site/vendor" ]; then
     $my_dir/../composer/install.bash
