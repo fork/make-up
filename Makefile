@@ -105,6 +105,10 @@ endif
 # BEGIN methods #
 #################
 
+# Install make-up in project
+install-make-up:
+	@./scripts/install-make-up/install.bash
+
 ## Display project information
 info:
 	@./$(HELPER_SCRIPTS)/info/info.bash
