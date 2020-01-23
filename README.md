@@ -1,21 +1,26 @@
 # Make-up
 
-**Being a web developer is hard.** You often find yourself asking stuff like 'How do I setup this project?', 'What do I need to compile?', 'How do I deploy this?' and 'How do I get live data to my local machine?'.
+**Being a web developer is hard.** You often find yourself asking stuff like:
 
-Such things can really slow down the development process, because you need to know things – or at least read about it in the docs. Yeah.
+- _How to setup this project?_
+- _Which script will start the compilation?_
+- _How to deploy?_ or
+- _How to sync between environments?_
 
-By covering the necessary requirements for the development process automatically, Make-up leaves you more time for creativity.
+These things can really **slow down the process** of development if they are not sufficiently documented.
 
-No matter what project you are working on, no matter what software is used: Make-up makes it work (@see [Supported software](#supported-software)).
+By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity.
 
-Make-up does stuff like:
+No matter what project you are working on, no matter what software is used: _Make-up_ will **make it work** (@see [Supported software](#supported-software)).
+
+_Make-up_ does stuff like:
 
 <details>
   <summary>
     Initial project setup after git clone
   </summary>
   
-  Make-up installs all required tools to get you started with development.
+  _Make-up_ installs all required tools to get you started with development.
 </details>
 
 <details>
@@ -23,7 +28,7 @@ Make-up does stuff like:
     Start developing process
   </summary>
   
-  Make-up controls all necessary processes so that you can focus on programming.
+  _Make-up_ controls all necessary background-processes so that you can focus on programming.
 </details>
 
 <details>
@@ -31,7 +36,7 @@ Make-up does stuff like:
     Deployment
   </summary>
   
-  Make-up shows you where and how you can successfully deploy your project.
+  _Make-up_ shows you where and how you can successfully deploy your project.
 </details>
 
 <details>
@@ -39,7 +44,7 @@ Make-up does stuff like:
     Sync between environments
   </summary>
   
-  Make-up synchronizes databases and files between different environments.
+  _Make-up_ synchronizes databases and files between different environments.
 </details>
 
 More features [here](#features).
@@ -69,9 +74,9 @@ More features [here](#features).
 
 ---
 
-## Add Make-up to your project
+## Add _Make-up_ to your project
 
-1. Add Make-up as a _submodule_ to your project:
+1. Add _Make-up_ as a _submodule_ to your project:
 
    ```bash
    cd my-project
@@ -125,14 +130,14 @@ More features [here](#features).
 1. Add this to the description of your project setup
 
    ```md
-   After `$ git clone` run this command to enable Make-up in your project:
+   After `$ git clone` run this command to enable _Make-up_ in your project:
 
    `$ git submodule update`
 
-   Setup Make-up as described [here](make-up/README.md#add-make-up-to-your-project).
+   Setup _Make-up_ as described [here](make-up/README.md#add-make-up-to-your-project).
    ```
 
-1. Now you may Make-up from your project root:
+1. Now you may use _Make-up_ from your project root:
 
    ```bash
    cd my-project
@@ -142,7 +147,7 @@ More features [here](#features).
 
 ## Features
 
-To list all available commands run
+To list all available _Make-up_ commands run
 
 ```bash
 cd my-project
@@ -153,7 +158,7 @@ make help
 
 ## Customization
 
-The scripts provided here contain general information to work for as many different project-setups as possible. All functions can therefore be modified, extended or overwritten. Überschreiben
+The scripts provided here contain general information to work for as many different project-setups as possible. All functions can therefore be modified, extended or overwritten.
 
 ### Add a new command
 
@@ -175,7 +180,7 @@ You may run a bash script from a Makefile command like so:
 @./path-to/foo.bash
 ```
 
-If you want to run an existing script from Make-up, use the following:
+If you want to run an existing script from _Make-up_, use the following:
 
 ```Makefile
 @./$(HELPER_SCRIPTS)/foo.bash
@@ -207,7 +212,7 @@ you could call the variable _FOO_
 
 You may overwrite an existing command in [../Makefile](../Makefile), by reusing a method name, already appearing in `$ make help`. You may continue as if you would [add a new command](#add-a-new-command).
 
-**Note:** _An overwridden command will produce a warning like this:_
+**Note:** _An overwridden command will produce a warning (which is ok) like this:_
 
     Makefile:x: warning: overwriding commands for target `foo'
     make-up/Makefile:123: warning: ignoring old commands for target `foo'
@@ -235,7 +240,7 @@ chmod +x foo.bash
 
 ## Supported software
 
-Make-up currently offers support for:
+_Make-up_ currently offers support for:
 
 - Craft CMS 3 (Docker)
 - Docker
@@ -274,6 +279,8 @@ Invalid working directory specified, /var/www/html does not exist.
 - **20.01.2020** `make production-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 - **20.01.2020** `make staging-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 - **23.01.2020** Craft und docker sollten vielleicht in das Verzeichnis craft wandern, da docker für craft configuriert wurde.
+- **23.01.2020** Create changelog.txt
+- **23.01.2020** Makefile Methoden sind aktuell nur überschreibbar, sie sollten aber auch erweiterbar sein
 
 ---
 
