@@ -15,13 +15,14 @@ echo
 E_STAGING_DB_DUMP_NAME=staging.sql.gz
 
 # check if all neccesary information is given
-if 
-  [ ! -n "$E_STAGING_SSH_USER" ] || 
-  [ ! -n "$E_STAGING_SSH_HOST" ] || 
-  [ ! -n "$E_STAGING_DB_USER" ] || 
-  [ ! -n "$E_STAGING_DB_PASS" ] || 
-  [ ! -n "$E_STAGING_DB_NAME" ] ||  
-  [ ! -n "$E_STAGING_PROJECT_HOME" ]; then
+if
+  [ ! -n "$E_STAGING_SSH_USER" ] ||
+    [ ! -n "$E_STAGING_SSH_HOST" ] ||
+    [ ! -n "$E_STAGING_DB_USER" ] ||
+    [ ! -n "$E_STAGING_DB_PASS" ] ||
+    [ ! -n "$E_STAGING_DB_NAME" ] ||
+    [ ! -n "$E_STAGING_PROJECT_HOME" ]
+then
   echo
   echo "  ${RED}ERROR${NC} Some information is missing in your ${WHITE}.env${NC} file (@see below)."
   echo
@@ -63,11 +64,12 @@ echo "  ${BLUE}TASK${NC} Synchronize uploads"
 echo
 
 # check if all neccesary information is given
-if 
-  [ ! -n "$E_STAGING_SSH_USER" ] || 
-  [ ! -n "$E_STAGING_SSH_HOST" ] || 
-  [ ! -n "$E_STAGING_UPLOADS" ] || 
-  [ ! -n "$E_DEV_UPLOADS" ]; then
+if
+  [ ! -n "$E_STAGING_SSH_USER" ] ||
+    [ ! -n "$E_STAGING_SSH_HOST" ] ||
+    [ ! -n "$E_STAGING_UPLOADS" ] ||
+    [ ! -n "$E_DEV_UPLOADS" ]
+then
   echo
   echo "  ${RED}ERROR${NC} Some information is missing in your ${WHITE}.env${NC} file (@see below)."
   echo
@@ -81,9 +83,8 @@ else
 
   # sync uploads
   rsync -F -L -a -z -e ssh $E_STAGING_SSH_USER@$E_STAGING_SSH_HOST:$E_STAGING_UPLOADS/* $E_DEV_UPLOADS --delete-after --progress
-  
+
   echo
   echo "  ${GREEN}SUCCESS${NC} Synchronized uploads to ./$E_DEV_UPLOADS (There may be additional output above)"
   echo
 fi
-

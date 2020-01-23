@@ -13,7 +13,7 @@ BACKUPS_DIR=backups
 
 if [ -z "$DUMP_NAME" ]; then
   # restore latest
-  DUMP_NAME=$BACKUPS_DIR/`ls -t1 backups/|head -n 1`
+  DUMP_NAME=$BACKUPS_DIR/$(ls -t1 backups/ | head -n 1)
   echo
   echo "  → ${BOLD}Restoring latest dump${NC}"
   echo "    $DUMP_NAME"
@@ -25,10 +25,10 @@ else
 fi
 
 # create temporary copy from DUMP_NAME
-gzip -d -c $DUMP_NAME > craft-temp.sql.tmp
+gzip -d -c $DUMP_NAME >craft-temp.sql.tmp
 
 # import
-docker exec -i $(docker-compose ps -q db) $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE < craft-temp.sql.tmp
+docker exec -i $(docker-compose ps -q db) $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE <craft-temp.sql.tmp
 
 # remove temporary files
 rm craft-temp.sql.tmp

@@ -15,7 +15,7 @@ UPLOADS=null
 if [ ! -z "$E_DEV_UPLOADS" ]; then
   UPLOADS=$E_DEV_UPLOADS
 fi
-	
+
 # create uploads directory from INITIAL_UPLOADS
 if [ -z "$E_DEV_UPLOADS" ]; then
   UPLOADS=$INITIAL_UPLOADS
