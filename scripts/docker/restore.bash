@@ -13,7 +13,7 @@ BACKUPS_DIR=backups
 
 if [ -z "$DUMP_NAME" ]; then
   # restore latest
-  DUMP_NAME=$BACKUPS_DIR/$(ls -t1 backups/ | head -n 1)
+  DUMP_NAME=$BACKUPS_DIR/$(ls -t1 $BACKUPS_DIR/ | head -n 1)
   echo
   echo "  → ${BOLD}Restoring latest dump${NC}"
   echo "    $DUMP_NAME"

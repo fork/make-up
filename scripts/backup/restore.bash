@@ -9,10 +9,11 @@ echo "  ${BLUE}TASK${NC} Restore data"
 echo
 
 ok=false
+ARGS=$@
 
 # try docker
 if [ -d "docker" ]; then
-  $my_dir/../docker/restore.bash
+  $my_dir/../docker/restore.bash $ARGS
   ok=true
 fi
 

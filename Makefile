@@ -154,7 +154,7 @@ backup:
 
 ## Restore
 restore:
-	@./$(HELPER_SCRIPTS)/backup/restore.bash
+	@./$(HELPER_SCRIPTS)/backup/restore.bash $(ARGS)
 
 ## Deploy
 deploy:
