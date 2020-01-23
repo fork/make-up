@@ -41,7 +41,7 @@ TARGET_MAX_CHAR_NUM=20
 ## Shows this help
 help:
 	@echo ''
-	@echo '${REV}${BLUE}TASK${NC} Listing all available commands'
+	@echo '  ${REV}${BLUE}TASK${NC} Listing all available commands'
 	@echo ''
 	@echo 'usage:'
 	@echo '  ${YELLOW}make${NC} ${GREEN}<command>${NC}'
@@ -58,7 +58,7 @@ help:
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 	@echo ''
 	@echo ''
-	@echo '${REV}${GREEN}SUCCESS${NC} Done'
+	@echo '  ${REV}${GREEN}SUCCESS${NC} Done'
 	@echo ''
 
 # Define ARGS so we can use arguments within a Makefile method: `$ make <method> args`
@@ -112,7 +112,7 @@ info:
 ## Initial project setup
 up:
 	@./$(HELPER_SCRIPTS)/start/start.bash
-	@./$(HELPER_SCRIPTS)/craft/env.bash
+	@./$(HELPER_SCRIPTS)/env/create.bash
 	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
 	@make help
 	@touch .env

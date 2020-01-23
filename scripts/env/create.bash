@@ -5,15 +5,14 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Create uploads directory"
+echo "  ${BLUE}TASK${NC} Environment"
 echo
 
 ok=false
 
 # try craft
 if [ -d "site/config" ]; then
-  $my_dir/../craft/uploads.bash
-  ok=true
+  $my_dir/../craft/env.bash
 fi
 
 if [ "$ok" = true ]; then

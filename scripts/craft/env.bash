@@ -4,6 +4,10 @@
 my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
+echo
+echo "  ${BLUE}TASK${NC} Craft CMS 3: Setup Environment"
+echo
+
 file="site/.env"
 file_example="site/.env.example"
 file_backup="site/.env.original"
