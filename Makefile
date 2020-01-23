@@ -154,7 +154,7 @@ restore:
 
 ## Deploy
 deploy:
-	@./$(HELPER_SCRIPTS)/deploy/info.bash
+	@./$(HELPER_SCRIPTS)/deploy/deploy.bash
 
 ## Synchronize from environment 'staging' to 'dev'
 staging-to-dev:
