@@ -63,6 +63,7 @@ More features [here](#features).
       - [Run a script from a command](#run-a-script-from-a-command)
       - [Access environmental variables](#access-environmental-variables)
     - [Overwrite an existing command](#overwrite-an-existing-command)
+    - [Extend an existing command](#extend-an-existing-command)
     - [Create a new bash script](#create-a-new-bash-script)
   - [Supported software](#supported-software)
   - [Troubleshooting](#troubleshooting)
@@ -216,6 +217,33 @@ You may overwrite an existing command in [../Makefile](../Makefile), by reusing 
     make-up/Makefile:123: warning: ignoring old commands for target `foo'
     Bar
 
+### Extend an existing command
+
+You may extend existing methods with custom bash scripts. To do so, you need to put them in a specific folder and structure:
+
+```bash
+cd my-project 
+
+# create directory
+mkdir more-make-up
+```
+
+You may now mirror the structure of _Make-up_ like so:
+
+```
+make-up
+  → scripts
+    → foo
+      → bar.bash
+
+more-make-up
+  → scripts
+    → foo
+      → bar.bash
+```
+
+Whenever a script in _Make-up_ is run – for example _make-up/scripts/foo/bar.bash_, _Make-up_ tries to execute _more-make-up/scripts/foo/bar.bash_ if it exists.
+
 ### Create a new bash script
 
 Begin every bash script with the following lines:
@@ -278,7 +306,6 @@ Invalid working directory specified, /var/www/html does not exist.
 - **20.01.2020** `make staging-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 - **23.01.2020** Craft und docker sollten vielleicht in das Verzeichnis craft wandern, da docker für craft configuriert wurde.
 - **23.01.2020** Create changelog.txt
-- **23.01.2020** Makefile Methoden sind aktuell nur überschreibbar, sie sollten aber auch erweiterbar sein
 
 ---
 
