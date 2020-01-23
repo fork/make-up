@@ -94,7 +94,6 @@ More features [here](#features).
 
    ```bash
    cd make-up
-
    make install-make-up
    ```
 
@@ -141,7 +140,6 @@ More features [here](#features).
 
    ```bash
    cd my-project
-
    make help
    ```
 
