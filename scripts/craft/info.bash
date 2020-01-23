@@ -7,7 +7,7 @@ source "$my_dir/../../helper.bash"
 # Craft CMS project information
 if [ -d "site" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Craft CMS"
+  echo "  ${BLUE}TASK${NC} Craft CMS 3"
   echo
 
   # craft

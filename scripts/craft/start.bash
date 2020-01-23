@@ -32,7 +32,7 @@ if [ -d "site" ]; then
   if [ ! -f "$file" ]; then
     $my_dir/env.bash
   fi
-  
+
   # check if we need a 'composer install' if craft is already included
   if [ ! -d "site/vendor" ]; then
     $my_dir/../composer/install.bash

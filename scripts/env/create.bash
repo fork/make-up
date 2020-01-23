@@ -5,15 +5,14 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Install composer"
+echo "  ${BLUE}TASK${NC} Environment"
 echo
 
 ok=false
 
-# try docker
-if [ -d "docker" ]; then
-  $my_dir/../docker/composer-install.bash
-  ok=true
+# try craft
+if [ -d "site/config" ]; then
+  $my_dir/../craft/env.bash
 fi
 
 if [ "$ok" = true ]; then

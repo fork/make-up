@@ -31,4 +31,3 @@ else
   echo "  ${RED}ERROR${NC} Could not find a method to execute command"
   echo
 fi
-

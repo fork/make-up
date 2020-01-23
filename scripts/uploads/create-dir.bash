@@ -8,20 +8,20 @@ echo
 echo "  ${BLUE}TASK${NC} Create uploads directory"
 echo
 
-# params
-UPLOADS=null
+ok=false
 
-# create uploads directory from E_DEV_UPLOADS
-if [ ! -z "$E_DEV_UPLOADS" ]; then
-  UPLOADS=$E_DEV_UPLOADS
-fi
-	
-# create uploads directory from INITIAL_UPLOADS
-if [ -z "$E_DEV_UPLOADS" ]; then
-  UPLOADS=$INITIAL_UPLOADS
+# try craft
+if [ -d "site/config" ]; then
+  $my_dir/../craft/uploads.bash
+  ok=true
 fi
 
-mkdir -p $UPLOADS
-
-echo "  ${GREEN}SUCCESS${NC} Uploads path: $UPLOADS"
-echo
+if [ "$ok" = true ]; then
+  echo
+  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo
+else
+  echo
+  echo "  ${RED}ERROR${NC} Could not find a method to execute command"
+  echo
+fi
