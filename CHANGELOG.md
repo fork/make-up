@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## 2020-01-24
+## [v0.0.1] - 2019-01-24
 
 ### Added
 
@@ -16,3 +16,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README now contains a super cool image
 
 [unreleased]: https://github.com/fork/make-up/tree/develop
+[v0.0.1]: https://github.com/fork/make-up/tree/v0.0.1
