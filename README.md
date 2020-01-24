@@ -1,5 +1,7 @@
 # Make-up
 
+![Image](static/make-up.jpg)
+
 **Being a web developer is hard.** You often find yourself asking stuff like:
 
 - _How to setup this project?_
@@ -56,8 +58,10 @@ More features [here](#features).
 <!-- TOC -->
 
 - [Make-up](#make-up)
+  - [Requirements](#requirements)
   - [Add Make-up to your project](#add-make-up-to-your-project)
   - [Features](#features)
+    - [Make-up works with](#make-up-works-with)
   - [Customization](#customization)
     - [Add a new command](#add-a-new-command)
       - [Run a script from a command](#run-a-script-from-a-command)
@@ -65,7 +69,6 @@ More features [here](#features).
     - [Overwrite an existing command](#overwrite-an-existing-command)
     - [Extend an existing command](#extend-an-existing-command)
     - [Create a new bash script](#create-a-new-bash-script)
-  - [Supported software](#supported-software)
   - [Troubleshooting](#troubleshooting)
     - [Craft CMS 3](#craft-cms-3)
       - [Invalid working directory specified](#invalid-working-directory-specified)
@@ -74,6 +77,10 @@ More features [here](#features).
 <!-- /TOC -->
 
 ---
+
+## Requirements
+
+- Terminal application which can run _Linux_ commands
 
 ## Add _Make-up_ to your project
 
@@ -155,6 +162,16 @@ cd my-project
 make help
 ```
 
+### _Make-up_ works with
+
+_Make-up_ currently works with:
+
+- Craft CMS 3 (Docker)
+- Docker
+- NPM
+- Yarn
+- MySQL
+
 ## Customization
 
 The scripts provided here contain general information to work for as many different project-setups as possible. All functions can therefore be modified, extended or overwritten.
@@ -222,7 +239,7 @@ You may overwrite an existing command in [../Makefile](../Makefile), by reusing 
 You may extend existing methods with custom bash scripts. To do so, you need to put them in a specific folder and structure:
 
 ```bash
-cd my-project 
+cd my-project
 
 # create directory
 mkdir more-make-up
@@ -263,16 +280,6 @@ After having the [./helper.bash](./helper.bash) loaded, you may access gloabl va
 ```bash
 chmod +x foo.bash
 ```
-
-## Supported software
-
-_Make-up_ currently offers support for:
-
-- Craft CMS 3 (Docker)
-- Docker
-- NPM
-- Yarn
-- MySQL
 
 ## Troubleshooting
 
