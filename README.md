@@ -312,7 +312,6 @@ Invalid working directory specified, /var/www/html does not exist.
 - **20.01.2020** `make production-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 - **20.01.2020** `make staging-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 - **23.01.2020** Craft und docker sollten vielleicht in das Verzeichnis craft wandern, da docker für craft configuriert wurde.
-- **23.01.2020** Create changelog.txt
 
 ---
 
