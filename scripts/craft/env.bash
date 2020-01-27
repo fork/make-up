@@ -22,7 +22,7 @@ injections() {
 # Environment dev on localhost
 E_DEV_UPLOADS=$INITIAL_UPLOADS
 
-# Environment 'staging' on dev.4rk.de
+# Environment 'staging' on staging server
 E_STAGING_SSH_USER=USER
 E_STAGING_SSH_HOST=HOST
 E_STAGING_PROJECT_HOME=PROJECT_HOME
@@ -31,7 +31,7 @@ E_STAGING_DB_USER=DB_USER
 E_STAGING_DB_NAME=DB_NAME
 E_STAGING_UPLOADS=UPLOADS
 
-# Environment 'production' on production server;
+# Environment 'production' on production server
 E_PRODUCTION_SSH_USER=USER
 E_PRODUCTION_SSH_HOST=HOST
 E_PRODUCTION_PROJECT_HOME=PROJECT_HOME
