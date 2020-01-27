@@ -10,6 +10,12 @@ echo
 
 ok=false
 
+# try git
+if [ -d ".git" ]; then
+  $my_dir/../git/info.bash
+  ok=true
+fi
+
 # try docker
 if [ -d "docker" ]; then
   $my_dir/../docker/info.bash

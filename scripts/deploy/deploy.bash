@@ -10,6 +10,18 @@ echo
 
 ok=false
 
+# try gitlab-ci
+if [ -f ".gitlab-ci.yml" ]; then
+  repository=$(git config --get remote.origin.url)
+  echo "  → ${BOLD}GitLab Continuous Integration (CI) & Continuous Delivery (CD)${NC}"
+  echo "    Configuration: ./.gitlab-ci.yml"
+  echo "    Repository: $repository"
+  echo "    Official Documentation: https://about.gitlab.com/product/continuous-integration/"
+
+  ok=true
+fi
+
+
 # more-make-up
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
