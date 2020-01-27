@@ -59,9 +59,11 @@ More features [here](#features).
 
 - [Make-up](#make-up)
   - [Requirements](#requirements)
-  - [Add Make-up to your project](#add-make-up-to-your-project)
+    - [Tested Operating Systems](#tested-operating-systems)
+    - [Tested Shells](#tested-shells)
   - [Features](#features)
     - [Make-up works with](#make-up-works-with)
+  - [Add Make-up to your project](#add-make-up-to-your-project)
   - [Customization](#customization)
     - [Add a new command](#add-a-new-command)
       - [Run a script from a command](#run-a-script-from-a-command)
@@ -80,7 +82,43 @@ More features [here](#features).
 
 ## Requirements
 
-- Terminal application which can run _Linux_ commands
+To run _Make-up_ you need a terminal application which can run _Linux_ commands.
+
+### Tested Operating Systems
+
+| OS           | Version |
+| ------------ | ------- |
+| macOS Mojave | 10.14.6 |
+
+### Tested Shells
+
+| Name     | Version |
+| -------- | ------- |
+| Terminal | 2.9.5   |
+| iTerm2   | 3.3.7   |
+
+## Features
+
+To list all available _Make-up_ commands run
+
+```bash
+cd my-project
+
+# Help
+make help
+```
+
+### _Make-up_ works with
+
+_Make-up_ automatically detects the following tools/software and attempts to perform related tasks.
+
+- Craft CMS 3 (Docker)
+- Docker
+- NPM
+- Yarn
+- MySQL
+- GitLab Continuous Integration (CI) & Continuous Delivery (CD)
+- Git-ftp
 
 ## Add _Make-up_ to your project
 
@@ -150,27 +188,6 @@ More features [here](#features).
    cd my-project
    make help
    ```
-
-## Features
-
-To list all available _Make-up_ commands run
-
-```bash
-cd my-project
-
-# Help
-make help
-```
-
-### _Make-up_ works with
-
-_Make-up_ currently works with:
-
-- Craft CMS 3 (Docker)
-- Docker
-- NPM
-- Yarn
-- MySQL
 
 ## Customization
 

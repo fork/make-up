@@ -12,12 +12,15 @@ ok=false
 
 # try gitlab-ci
 if [ -f ".gitlab-ci.yml" ]; then
-  repository=$(git config --get remote.origin.url)
-  echo "  → ${BOLD}GitLab Continuous Integration (CI) & Continuous Delivery (CD)${NC}"
-  echo "    Configuration: ./.gitlab-ci.yml"
-  echo "    Repository: $repository"
-  echo "    Official Documentation: https://about.gitlab.com/product/continuous-integration/"
+  $my_dir/../git/gitlab-ci.bash
 
+  ok=true
+fi
+
+# try git-ftp
+if [ -f ".git-ftp-config" ]; then
+  $my_dir/../git/git-ftp.bash
+  
   ok=true
 fi
 
