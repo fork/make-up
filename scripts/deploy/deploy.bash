@@ -24,6 +24,14 @@ if [ -f ".git-ftp-config" ]; then
   ok=true
 fi
 
+# try '$ npm run deploy'
+deploycommand=$(npm run deploy --if-present)
+if [ -n "$deploycommand" ]; then
+  echo "  → ${BOLD}Task found in ./package.json${NC}"
+  echo "    $ npm run deploy"
+
+  ok=true
+fi
 
 # more-make-up
 MORE_MAKE_UP="${0/make-up/more-make-up}"
