@@ -1,5 +1,7 @@
 # Make-up
 
+![Image](static/make-up.jpg)
+
 **Being a web developer is hard.** You often find yourself asking stuff like:
 
 - _How to setup this project?_
@@ -56,15 +58,19 @@ More features [here](#features).
 <!-- TOC -->
 
 - [Make-up](#make-up)
-  - [Add Make-up to your project](#add-make-up-to-your-project)
+  - [Requirements](#requirements)
+    - [Tested Operating Systems](#tested-operating-systems)
+    - [Tested Shells](#tested-shells)
   - [Features](#features)
+    - [Make-up works with](#make-up-works-with)
+  - [Add Make-up to your project](#add-make-up-to-your-project)
   - [Customization](#customization)
     - [Add a new command](#add-a-new-command)
       - [Run a script from a command](#run-a-script-from-a-command)
       - [Access environmental variables](#access-environmental-variables)
     - [Overwrite an existing command](#overwrite-an-existing-command)
+    - [Extend an existing command](#extend-an-existing-command)
     - [Create a new bash script](#create-a-new-bash-script)
-  - [Supported software](#supported-software)
   - [Troubleshooting](#troubleshooting)
     - [Craft CMS 3](#craft-cms-3)
       - [Invalid working directory specified](#invalid-working-directory-specified)
@@ -73,6 +79,46 @@ More features [here](#features).
 <!-- /TOC -->
 
 ---
+
+## Requirements
+
+To run _Make-up_ you need a terminal application which can run _Linux_ commands.
+
+### Tested Operating Systems
+
+| OS           | Version |
+| ------------ | ------- |
+| macOS Mojave | 10.14.6 |
+
+### Tested Shells
+
+| Name     | Version |
+| -------- | ------- |
+| Terminal | 2.9.5   |
+| iTerm2   | 3.3.7   |
+
+## Features
+
+To list all available _Make-up_ commands run
+
+```bash
+cd my-project
+
+# Help
+make help
+```
+
+### _Make-up_ works with
+
+_Make-up_ automatically detects the following tools/software and attempts to perform related tasks.
+
+- Craft CMS 3 (Docker) 3.4.1
+- Docker
+- NPM
+- Yarn
+- MySQL
+- GitLab Continuous Integration (CI) & Continuous Delivery (CD)
+- Git-ftp
 
 ## Add _Make-up_ to your project
 
@@ -143,17 +189,6 @@ More features [here](#features).
    make help
    ```
 
-## Features
-
-To list all available _Make-up_ commands run
-
-```bash
-cd my-project
-
-# Help
-make help
-```
-
 ## Customization
 
 The scripts provided here contain general information to work for as many different project-setups as possible. All functions can therefore be modified, extended or overwritten.
@@ -216,6 +251,33 @@ You may overwrite an existing command in [../Makefile](../Makefile), by reusing 
     make-up/Makefile:123: warning: ignoring old commands for target `foo'
     Bar
 
+### Extend an existing command
+
+You may extend existing methods with custom bash scripts. To do so, you need to put them in a specific folder and structure:
+
+```bash
+cd my-project
+
+# create directory
+mkdir more-make-up
+```
+
+You may now mirror the structure of _Make-up_ like so:
+
+```
+make-up
+  → scripts
+    → foo
+      → bar.bash
+
+more-make-up
+  → scripts
+    → foo
+      → bar.bash
+```
+
+Whenever a script in _Make-up_ is run – for example _make-up/scripts/foo/bar.bash_, _Make-up_ tries to execute _more-make-up/scripts/foo/bar.bash_ if it exists.
+
 ### Create a new bash script
 
 Begin every bash script with the following lines:
@@ -235,16 +297,6 @@ After having the [./helper.bash](./helper.bash) loaded, you may access gloabl va
 ```bash
 chmod +x foo.bash
 ```
-
-## Supported software
-
-_Make-up_ currently offers support for:
-
-- Craft CMS 3 (Docker)
-- Docker
-- NPM
-- Yarn
-- MySQL
 
 ## Troubleshooting
 
@@ -277,8 +329,6 @@ Invalid working directory specified, /var/www/html does not exist.
 - **20.01.2020** `make production-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 - **20.01.2020** `make staging-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
 - **23.01.2020** Craft und docker sollten vielleicht in das Verzeichnis craft wandern, da docker für craft configuriert wurde.
-- **23.01.2020** Create changelog.txt
-- **23.01.2020** Makefile Methoden sind aktuell nur überschreibbar, sie sollten aber auch erweiterbar sein
 
 ---
 
