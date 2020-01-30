@@ -21,6 +21,9 @@ injections() {
 
 # Environment dev on localhost
 E_DEV_UPLOADS=$INITIAL_UPLOADS
+DB_DATABASE="craft"
+DB_SERVER="db"
+DB_DRIVER="mysql"
 
 # Environment 'staging' on staging server
 E_STAGING_SSH_USER=USER
@@ -107,8 +110,7 @@ if [ -f "$file" ]; then
   echo
 
   # fill in data for environment: dev
-  sed 's#DB_SERVER="localhost"#DB_SERVER="db"#' $file >tmp && mv tmp $file
-  sed 's#DB_DATABASE=""#DB_DATABASE="craft"#' $file >tmp && mv tmp $file
+  sed 's#DB_DSN=""#DB_DSN="mysql:host=db;port=3306;dbname=craft"#' $file >tmp && mv tmp $file
   sed 's#DB_USER="root"#DB_USER="craft"#' $file >tmp && mv tmp $file
   sed 's#DB_PASSWORD=""#DB_PASSWORD="craft"#' $file >tmp && mv tmp $file
   sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX="craft"#' $file >tmp && mv tmp $file

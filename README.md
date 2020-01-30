@@ -112,7 +112,7 @@ make help
 
 _Make-up_ automatically detects the following tools/software and attempts to perform related tasks.
 
-- Craft CMS 3 (Docker)
+- Craft CMS 3 (Docker) 3.4.1
 - Docker
 - NPM
 - Yarn
