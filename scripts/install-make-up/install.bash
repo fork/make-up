@@ -47,8 +47,6 @@ if [ -f "$YOUR_MAKEFILE" ]; then
   echo
 
   # check if $STRING is already in $YOUR_MAKEFILE
-  grep -Fxq "$STRING" $YOUR_MAKEFILE
-
   if grep -Fxq "$STRING" $YOUR_MAKEFILE; then
     echo
     echo "  ${GREEN}SUCCESS${NC} Done"
