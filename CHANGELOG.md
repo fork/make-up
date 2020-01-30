@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - v0.0.2 and v0.0.2.1 in changelog
+- Craft CMS uploads will now be added automatically to your .gitignore
 
 ### Fixed
 
