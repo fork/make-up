@@ -25,13 +25,13 @@ else
 fi
 
 # create temporary copy from DUMP_NAME
-gzip -d -c $DUMP_NAME >craft-temp.sql.tmp
+gzip -d -c $DUMP_NAME >temp.sql.tmp
 
 # import
-docker exec -i $(docker-compose ps -q db) $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE <craft-temp.sql.tmp
+docker exec -i $(docker-compose ps -q db) $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE <temp.sql.tmp
 
 # remove temporary files
-rm craft-temp.sql.tmp
+rm temp.sql.tmp
 
 echo
 echo "  ${GREEN}SUCCESS${NC} Done"
