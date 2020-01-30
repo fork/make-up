@@ -47,8 +47,6 @@ if [ -f "$YOUR_MAKEFILE" ]; then
   echo
 
   # check if $STRING is already in $YOUR_MAKEFILE
-  grep -Fxq "$STRING" $YOUR_MAKEFILE
-
   if grep -Fxq "$STRING" $YOUR_MAKEFILE; then
     echo
     echo "  ${GREEN}SUCCESS${NC} Done"
@@ -108,8 +106,6 @@ if [ -f "$YOUR_GIT_IGNORE" ]; then
   STRING=".env"
 
   # check if $STRING is already in $YOUR_GIT_IGNORE
-  grep -Fxq "$STRING" $YOUR_GIT_IGNORE
-
   if grep -Fxq "$STRING" $YOUR_GIT_IGNORE; then
     echo
     echo "  ${GREEN}SUCCESS${NC} Done"
