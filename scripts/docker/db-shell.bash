@@ -8,7 +8,25 @@ echo
 echo "  ${BLUE}TASK${NC} 🐳 Enter database shell"
 echo
 
-docker-compose exec db $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE
+# check if all neccesary information is given
+if
+  [ ! -n "$DB_DRIVER" ] ||
+    [ ! -n "$DB_USER" ] ||
+    [ ! -n "$DB_SERVER" ] ||
+    [ ! -n "$DB_DATABASE" ] ||
+    [ ! -n "$DB_PASSWORD" ]
+then
+  echo
+  echo "  ${RED}ERROR${NC} Some information is missing in your ${WHITE}.env${NC} file (@see below)."
+  echo
+  echo "  → DB_DRIVER=$DB_DRIVER"
+  echo "  → DB_USER=$DB_USER"
+  echo "  → DB_SERVER=$DB_SERVER"
+  echo "  → DB_DATABASE=$DB_DATABASE"
+  echo "  → DB_PASSWORD=$DB_PASSWORD"
+else
+  docker-compose exec db $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE
+fi
 
 echo
 echo "  ${GREEN}SUCCESS${NC} Done"

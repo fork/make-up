@@ -21,8 +21,11 @@ injections() {
 
 # Environment dev on localhost
 E_DEV_UPLOADS=$INITIAL_UPLOADS
+DB_DATABASE="craft"
+DB_SERVER="db"
+DB_DRIVER="mysql"
 
-# Environment 'staging' on dev.4rk.de
+# Environment 'staging' on staging server
 E_STAGING_SSH_USER=USER
 E_STAGING_SSH_HOST=HOST
 E_STAGING_PROJECT_HOME=PROJECT_HOME
@@ -31,7 +34,7 @@ E_STAGING_DB_USER=DB_USER
 E_STAGING_DB_NAME=DB_NAME
 E_STAGING_UPLOADS=UPLOADS
 
-# Environment 'production' on production server;
+# Environment 'production' on production server
 E_PRODUCTION_SSH_USER=USER
 E_PRODUCTION_SSH_HOST=HOST
 E_PRODUCTION_PROJECT_HOME=PROJECT_HOME
@@ -107,8 +110,7 @@ if [ -f "$file" ]; then
   echo
 
   # fill in data for environment: dev
-  sed 's#DB_SERVER="localhost"#DB_SERVER="db"#' $file >tmp && mv tmp $file
-  sed 's#DB_DATABASE=""#DB_DATABASE="craft"#' $file >tmp && mv tmp $file
+  sed 's#DB_DSN=""#DB_DSN="mysql:host=db;port=3306;dbname=craft"#' $file >tmp && mv tmp $file
   sed 's#DB_USER="root"#DB_USER="craft"#' $file >tmp && mv tmp $file
   sed 's#DB_PASSWORD=""#DB_PASSWORD="craft"#' $file >tmp && mv tmp $file
   sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX="craft"#' $file >tmp && mv tmp $file
