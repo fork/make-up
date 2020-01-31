@@ -49,3 +49,9 @@ FOLDER_NAME=${PWD##*/}
 
 # craft uploads directory
 INITIAL_UPLOADS=site/web/uploads
+
+# Make-Up commands
+I18N_TASK="  ${BLUE}TASK${NC}"
+I18N_SUCCESS="    ${GREEN}SUCCESS${NC}"
+I18N_WARNING="    ${YELLOW}WARNING${NC}"
+I18N_ERROR="    ${RED}ERROR${NC}"
