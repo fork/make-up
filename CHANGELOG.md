@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.2.2] - 2019-01-31
+
+### Added
+
+- _frontend/node\_modules_ now tries `$ npm run dev` and `$ npm start` automatically
+- Changed syntax `${BLUE}TASK${NC}` to `$I18N_TASK` (for 'task', 'success', 'warning', 'error')
+- Craft now creates a reference to _site/.env_ in _.env_ automatically
+
+### Fixed
+
+- Typo
+- Removed error message in `$ make up` caused by _env/create_
+
 ## [v0.0.2.1] - 2019-01-30
 
 ### Added
@@ -31,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   standardized open source project CHANGELOG.
 - README now contains a super cool image
 
+[v0.0.2.2]: https://github.com/fork/make-up/compare/v0.0.2.1...v0.0.2.2
 [v0.0.2.1]: https://github.com/fork/make-up/compare/v0.0.2...v0.0.2.1
 [v0.0.2]: https://github.com/fork/make-up/compare/v0.0.1...v0.0.2
 [v0.0.1]: https://github.com/fork/make-up/tree/v0.0.1
