@@ -7,7 +7,7 @@ source "$my_dir/../../helper.bash"
 # Craft CMS project information
 if [ -d "site" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Craft CMS 3"
+  echo "$I18N_TASK Craft CMS 3"
   echo
 
   # craft
@@ -34,13 +34,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true

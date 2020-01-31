@@ -5,7 +5,7 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} 🐳 Setting up docker"
+echo "$I18N_TASK 🐳 Setting up docker"
 echo
 
 docker ps | grep -q nginx-proxy || $my_dir/proxyup.bash
@@ -17,20 +17,20 @@ if [ ! -d "site/config" ]; then
 fi
 
 echo
-echo "  ${GREEN}SUCCESS${NC} Done"
+echo "$I18N_SUCCESS Done"
 echo
 
 # more-make-up
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true

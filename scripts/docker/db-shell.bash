@@ -5,7 +5,7 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} 🐳 Enter database shell"
+echo "$I18N_TASK 🐳 Enter database shell"
 echo
 
 # check if all neccesary information is given
@@ -17,7 +17,7 @@ if
     [ ! -n "$DB_PASSWORD" ]
 then
   echo
-  echo "  ${RED}ERROR${NC} Some information is missing in your ${WHITE}.env${NC} file (@see below)."
+  echo "$I18N_ERROR Some information is missing in your ${WHITE}.env${NC} file (@see below)."
   echo
   echo "  → DB_DRIVER=$DB_DRIVER"
   echo "  → DB_USER=$DB_USER"
@@ -29,20 +29,20 @@ else
 fi
 
 echo
-echo "  ${GREEN}SUCCESS${NC} Done"
+echo "$I18N_SUCCESS Done"
 echo
 
 # more-make-up
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true

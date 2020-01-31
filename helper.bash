@@ -11,15 +11,15 @@
 ##   $my_dir/my-script.bash
 
 # echo
-# echo "  ${BLUE}TASK${NC} My task"
+# echo "$I18N_TASK My task"
 # echo
 
 # echo
-# echo "  ${RED}ERROR${NC} My error"
+# echo "$I18N_ERROR My error"
 # echo
 
 # echo
-# echo "  ${GREEN}SUCCESS${NC} Done"
+# echo "$I18N_SUCCESS Done"
 # echo
 
 # --- end copy --- #

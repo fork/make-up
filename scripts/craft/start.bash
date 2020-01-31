@@ -10,18 +10,18 @@ file=site/.env
 # create .env in project root
 if [ ! -f "$file_root" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Create reference to $file in project root"
+  echo "$I18N_TASK Create reference to $file in project root"
   echo
 
   ln -s $file $file_root
 
   if [ -f "$file_root" ]; then
     echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
+    echo "$I18N_SUCCESS Done"
     echo
   else
     echo
-    echo "  ${RED}ERROR${NC} Could not create $file_root"
+    echo "$I18N_ERROR Could not create $file_root"
     echo
   fi
 fi
@@ -40,11 +40,11 @@ if [ -d "site" ]; then
 
   if [ -d "site/config" ]; then
     echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
+    echo "$I18N_SUCCESS Done"
     echo
   else
     echo
-    echo "  ${RED}ERROR${NC} Could not find Craft"
+    echo "$I18N_ERROR Could not find Craft"
     echo
   fi
 
@@ -56,13 +56,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true
