@@ -4,27 +4,7 @@
 my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
-file_root=.env
 file=site/.env
-
-# create .env in project root
-if [ ! -f "$file_root" ]; then
-  echo
-  echo "$I18N_TASK Create reference to $file in project root"
-  echo
-
-  ln -s $file $file_root
-
-  if [ -f "$file_root" ]; then
-    echo
-    echo "$I18N_SUCCESS Done"
-    echo
-  else
-    echo
-    echo "$I18N_ERROR Could not create $file_root"
-    echo
-  fi
-fi
 
 # Craft CMS (composer install)
 if [ -d "site" ]; then
