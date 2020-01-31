@@ -8,6 +8,7 @@ echo
 echo "  ${BLUE}TASK${NC} Craft CMS 3: Setup Environment"
 echo
 
+rootEnv=".env"
 file="site/.env"
 file_example="site/.env.example"
 file_backup="site/.env.original"
@@ -66,6 +67,35 @@ DB_SERVER="db"
 DB_DRIVER="mysql"
 EOF
 }
+
+# create reference to craft's .env in project root .env
+touch $rootEnv
+
+if [ -f "$rootEnv" ]; then
+  echo
+  echo "  ${BLUE}TASK${NC} Create a reference to $file in $rootEnv"
+  echo
+
+  STRING="ENV_FILE=$file"
+
+  # check if $STRING is already in $rootEnv
+  if grep -Fxq "$STRING" $rootEnv; then
+    echo
+    echo "  ${GREEN}SUCCESS${NC} Done"
+    echo
+  else
+    printf "\n$STRING" >>$rootEnv
+
+    echo
+    echo "  ${GREEN}SUCCESS${NC} Done"
+    echo
+  fi
+else
+  echo
+  echo "  ${RED}ERROR${NC} Could not find $rootEnv"
+  echo
+fi
+
 
 if [ -f "$file" ]; then
   echo
