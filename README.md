@@ -245,7 +245,7 @@ you could call the variable _FOO_
 
 You may overwrite an existing command in [../Makefile](../Makefile), by reusing a method name, already appearing in `$ make help`. You may continue as if you would [add a new command](#add-a-new-command).
 
-**Note:** _An overwridden command will produce a warning (which is ok) like this:_
+**Note:** _An overridden command will produce a warning (which is ok) like this:_
 
     Makefile:x: warning: overwriding commands for target `foo'
     make-up/Makefile:123: warning: ignoring old commands for target `foo'
