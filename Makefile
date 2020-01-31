@@ -115,11 +115,11 @@ info:
 
 ## Initial project setup
 up:
+	@touch .env
 	@./$(HELPER_SCRIPTS)/start/start.bash
 	@./$(HELPER_SCRIPTS)/env/create.bash
 	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
 	@make help
-	@touch .env
 	@./$(HELPER_SCRIPTS)/frontend/node_modules.bash
 
 ## Start developing
