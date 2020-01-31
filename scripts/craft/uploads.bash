@@ -5,7 +5,7 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Craft CMS 3: Uploads directory"
+echo "$I18N_TASK Craft CMS 3: Uploads directory"
 echo
 
 # params
@@ -25,30 +25,30 @@ mkdir -p $UPLOADS
 
 if [ -d "$UPLOADS" ]; then
   echo
-  echo "  ${GREEN}Success${NC} Your Craft Uploads are here: $UPLOADS"
+  echo "$I18N_SUCCESS Your Craft Uploads are here: $UPLOADS"
   echo
 
   YOUR_GIT_IGNORE=.gitignore
 
   echo
-  echo "  ${BLUE}TASK${NC} Add $UPLOADS to $YOUR_GIT_IGNORE"
+  echo "$I18N_TASK Add $UPLOADS to $YOUR_GIT_IGNORE"
   echo
 
   # check if $UPLOADS is already in $YOUR_GIT_IGNORE
   if grep -Fxq "$UPLOADS" $YOUR_GIT_IGNORE; then
     echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
+    echo "$I18N_SUCCESS Done"
     echo
   else
     printf "\n$UPLOADS" >>$YOUR_GIT_IGNORE
 
     echo
-    echo "  ${GREEN}SUCCESS${NC} Done"
+    echo "$I18N_SUCCESS Done"
     echo
   fi
 else
   echo
-  echo "  ${RED}ERROR${NC} Could not create directory $UPLOADS"
+  echo "$I18N_ERROR Could not create directory $UPLOADS"
   echo
 fi
 
@@ -56,13 +56,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true

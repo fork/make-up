@@ -5,11 +5,11 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Synchronize database and uploads from environment ${GREEN}staging${NC} to ${WHITE}dev${NC}"
+echo "$I18N_TASK Synchronize database and uploads from environment ${GREEN}staging${NC} to ${WHITE}dev${NC}"
 echo
 
 echo
-echo "  ${BLUE}TASK${NC} Get database from ${GREEN}staging${NC}"
+echo "$I18N_TASK Get database from ${GREEN}staging${NC}"
 echo
 
 E_STAGING_DB_DUMP_NAME=staging.sql.gz
@@ -24,7 +24,7 @@ if
     [ ! -n "$E_STAGING_PROJECT_HOME" ]
 then
   echo
-  echo "  ${RED}ERROR${NC} Some information is missing in your ${WHITE}.env${NC} file (@see below)."
+  echo "$I18N_ERROR Some information is missing in your ${WHITE}.env${NC} file (@see below)."
   echo
   echo "  → E_STAGING_SSH_USER=$E_STAGING_SSH_USER"
   echo "  → E_STAGING_SSH_HOST=$E_STAGING_SSH_HOST"
@@ -50,17 +50,17 @@ else
     rm $E_STAGING_DB_DUMP_NAME
 
     echo
-    echo "  ${GREEN}SUCCESS${NC} Synchronized database"
+    echo "$I18N_SUCCESS Synchronized database"
     echo
   else
     echo
-    echo "  ${RED}ERROR${NC} No file found that could be used to restore database"
+    echo "$I18N_ERROR No file found that could be used to restore database"
     echo
   fi
 fi
 
 echo
-echo "  ${BLUE}TASK${NC} Synchronize uploads"
+echo "$I18N_TASK Synchronize uploads"
 echo
 
 # check if all neccesary information is given
@@ -71,7 +71,7 @@ if
     [ ! -n "$E_DEV_UPLOADS" ]
 then
   echo
-  echo "  ${RED}ERROR${NC} Some information is missing in your ${WHITE}.env${NC} file (@see below)."
+  echo "$I18N_ERROR Some information is missing in your ${WHITE}.env${NC} file (@see below)."
   echo
   echo "  → E_STAGING_SSH_USER=$E_STAGING_SSH_USER"
   echo "  → E_STAGING_SSH_HOST=$E_STAGING_SSH_HOST"
@@ -85,7 +85,7 @@ else
   rsync -F -L -a -z -e ssh $E_STAGING_SSH_USER@$E_STAGING_SSH_HOST:$E_STAGING_UPLOADS/* $E_DEV_UPLOADS --delete-after --progress
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Synchronized uploads to ./$E_DEV_UPLOADS (There may be additional output above)"
+  echo "$I18N_SUCCESS Synchronized uploads to ./$E_DEV_UPLOADS (There may be additional output above)"
   echo
 fi
 
@@ -93,13 +93,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true

@@ -5,7 +5,7 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} 🐳 Dump database from docker image"
+echo "$I18N_TASK 🐳 Dump database from docker image"
 echo
 
 NOW=$(date +"%Y-%m-%d_%H-%M")
@@ -20,7 +20,7 @@ if
     [ ! -n "$DB_PASSWORD" ]
 then
   echo
-  echo "  ${RED}ERROR${NC} Some information is missing in your ${WHITE}.env${NC} file (@see below)."
+  echo "$I18N_ERROR Some information is missing in your ${WHITE}.env${NC} file (@see below)."
   echo
   echo "  → DB_USER=$DB_USER"
   echo "  → DB_SERVER=$DB_SERVER"
@@ -33,11 +33,11 @@ else
   
   if [ -f "$DUMP_DIR/$DUMP_NAME.sql.gz" ]; then
     echo
-    echo "  ${GREEN}SUCCESS${NC} Created dump: $DUMP_DIR/$DUMP_NAME.sql.gz"
+    echo "$I18N_SUCCESS Created dump: $DUMP_DIR/$DUMP_NAME.sql.gz"
     echo
   else
     echo
-    echo "  ${RED}ERROR${NC} Could not find $DUMP_DIR/$DUMP_NAME.sql.gz"
+    echo "$I18N_ERROR Could not find $DUMP_DIR/$DUMP_NAME.sql.gz"
     echo
   fi
 fi
@@ -46,13 +46,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true
