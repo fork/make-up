@@ -13,6 +13,7 @@ ok=false
 # try craft
 if [ -d "site/config" ]; then
   $my_dir/../craft/uploads.bash
+  
   ok=true
 fi
 
