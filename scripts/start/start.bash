@@ -21,6 +21,16 @@ if [ -d "docker" ]; then
   ok=true
 fi
 
+# install phpcs pre-commit hook
+if [ ! -f ".git/hooks/pre-commit" ]; then
+	# copy the pre-commit bash script to the .git directory
+	mkdir -p ./.git/hooks
+	cp $my_dir/../php-linting/pre-commit.bash ./.git/hooks/pre-commit
+	chmod +x ./.git/hooks/pre-commit
+
+  ok=true
+fi
+
 # more-make-up
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then

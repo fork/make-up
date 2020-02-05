@@ -13,6 +13,7 @@ read answer
 
 if [ "$answer" != "${answer#[Yy]}" ]; then
   docker-compose exec php composer create-project craftcms/craft /var/www/html
+  docker-compose exec php composer --working-dir=/var/www/html require --dev squizlabs/php_codesniffer
 else
   echo
   echo "$I18N_WARNING Skipped"
