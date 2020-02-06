@@ -26,29 +26,41 @@ fi
 
 # try '$ npm run deploy'
 if grep -q \"deploy\" "package.json"; then
-  echo
-  echo "  → ${BOLD}Task found in ./package.json${NC}"
-  echo "    $ npm run deploy"
+  # yarn
+  if [ "$IDENT_YARN" = true ]; then
+    manager="yarn"
+  fi 
+  
+  # npm
+  if [ "$IDENT_NPM" = true ]; then
+    manager="npm run"
+  fi 
 
   echo
-  echo -n "$I18N_QUESTION Run 'npm run deploy'? (y/n)"
-  read answer
+  echo "${I18N_INFO} Task found in ./package.json"
+  echo 
+  echo "  → deploy"
 
-  if [ "$answer" != "${answer#[Yy]}" ]; then
-
-    echo
-    echo "$I18N_TASK Run '$ npm run deploy'"
+  if [ -n "$manager" ]; then
     echo
 
-    npm run deploy
+    echo -n "$I18N_QUESTION Run '$ $manager deploy'? (y/n)"
+    read answer
+    echo
+  
+    if [ "$answer" != "${answer#[Yy]}" ]; then
+      echo "$I18N_TASK Run '$ $manager deploy'"
+      echo 
 
-    echo
-    echo "$I18N_SUCCESS Success"
-    echo
-  else
-    echo
-    echo "$I18N_WARNING Skipped '$ npm run deploy'"
-    echo
+      $manager deploy
+
+      echo
+      echo "$I18N_SUCCESS Success"
+      echo
+    else
+      echo "$I18N_WARNING Skipped '$ $manager deploy'"
+      echo
+    fi
   fi
 
   ok=true
