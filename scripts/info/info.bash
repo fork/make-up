@@ -11,20 +11,16 @@ echo
 ok=false
 
 # try git
-if [ -d ".git" ]; then
+if [ "$IDENT_GIT" = true ]; then
   $my_dir/../git/info.bash
+  
   ok=true
 fi
 
-# try docker
-if [ -d "docker" ]; then
-  $my_dir/../docker/info.bash
-  ok=true
-fi
+# try craft 3
+if [ "$IDENT_CRAFT_3" = true ]; then
+  $my_dir/../craft-3/info.bash
 
-# try craft
-if [ -d "site/config" ]; then
-  $my_dir/../craft/info.bash
   ok=true
 fi
 

@@ -5,7 +5,7 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK Git info"
+echo "$I18N_TASK 'Git' → Info"
 echo
 
 repository=$(git config --get remote.origin.url)

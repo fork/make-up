@@ -5,20 +5,23 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK 🐳 Run composer install"
+echo "$I18N_TASK 'Craft 3' → Run composer $1"
 echo
 
-docker-compose exec php composer --working-dir=/var/www/html install
+ok=false
 
-if [ -d "site/vendor" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
+  docker-compose exec php composer --working-dir=/var/www/html $1
+
   echo
   echo "$I18N_SUCCESS Done"
-  echo
+  echo  
+  
   ok=true
 else
   echo
-  echo "$I18N_ERROR Could not verify composer installation: site/vendor not found."
-  echo
+  echo "$I18N_ERROR Docker is required to run this command"
+  echo  
 fi
 
 # more-make-up

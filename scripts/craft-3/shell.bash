@@ -5,20 +5,24 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK 🐳 Setting up docker"
+echo "$I18N_TASK 'Craft 3' → Enter shell in docker container"
 echo
 
-docker ps | grep -q nginx-proxy || $my_dir/proxyup.bash
-docker-compose up -d
+ok=false
 
-# Try Craft CMS 3 (install)
-if [ ! -d "site/config" ]; then
-  $my_dir/../craft/install.bash
+if [ "$IDENT_DOCKER" = true ]; then
+  docker-compose exec php /bin/sh
+
+  echo
+  echo "$I18N_SUCCESS Done"
+  echo
+
+  ok=true
+else
+  echo
+  echo "$I18N_ERROR Docker is required to run this command"
+  echo  
 fi
-
-echo
-echo "$I18N_SUCCESS Done"
-echo
 
 # more-make-up
 MORE_MAKE_UP="${0/make-up/more-make-up}"

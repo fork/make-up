@@ -10,9 +10,10 @@ echo
 
 ok=false
 
-# try docker
-if [ -d "docker" ]; then
-  $my_dir/../docker/composer-install.bash
+# try craft 3
+if [ "$IDENT_CRAFT_3" = true ]; then
+  $my_dir/../craft-3/composer-install.bash
+  
   ok=true
 fi
 

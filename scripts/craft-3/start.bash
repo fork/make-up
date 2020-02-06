@@ -4,10 +4,16 @@
 my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
-file=site/.env
+echo
+echo "$I18N_TASK 'Craft 3' → Start"
+echo
+
+ok=false
 
 # Craft CMS (composer install)
-if [ -d "site" ]; then
+if [ "$IDENT_CRAFT_3" = true ]; then
+  file=site/.env
+
   # setup environment
   if [ ! -f "$file" ]; then
     $my_dir/env.bash
@@ -18,7 +24,7 @@ if [ -d "site" ]; then
     $my_dir/../composer/install.bash
   fi
 
-  if [ -d "site/config" ]; then
+  if [ "$IDENT_CRAFT_3" = true ]; then
     echo
     echo "$I18N_SUCCESS Done"
     echo
@@ -30,6 +36,8 @@ if [ -d "site" ]; then
 
   # display project information
   $my_dir/info.bash
+
+  ok=true
 fi
 
 # more-make-up

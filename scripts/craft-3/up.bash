@@ -5,15 +5,29 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK Stop"
+echo "$I18N_TASK 'Craft 3' → Setting up docker"
 echo
 
 ok=false
 
-# try craft 3
 if [ "$IDENT_DOCKER" = true ]; then
-  $my_dir/../craft-3/stop.bash
+  docker ps | grep -q nginx-proxy || $my_dir/proxyup.bash
+  docker-compose up -d
+
+  # install Craft 3 if not found
+  if [ ! "$IDENT_CRAFT_3" = true ]; then
+    $my_dir/install.bash
+  fi
+
+  echo
+  echo "$I18N_SUCCESS Done"
+  echo
+  
   ok=true
+else
+  echo
+  echo "$I18N_ERROR Docker is required to run this command"
+  echo  
 fi
 
 # more-make-up
@@ -30,14 +44,4 @@ if [ -f "$MORE_MAKE_UP" ]; then
   echo
 
   ok=true
-fi
-
-if [ "$ok" = true ]; then
-  echo
-  echo "$I18N_SUCCESS Done"
-  echo
-else
-  echo
-  echo "$I18N_ERROR Could not find a method to execute command"
-  echo
 fi

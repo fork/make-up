@@ -6,20 +6,24 @@
 
 - _How to setup this project?_
 - _Which script will start the compilation?_
-- _How to deploy?_ or
+- _How to deploy?_
 - _How to sync between environments?_
 
-These things can really **slow down the process** of development if they are not sufficiently documented.
+😩 These things can really **slow down the process** of development if they are not sufficiently documented.
 
-By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity.
+By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity 🎨.
 
-No matter what project you are working on, no matter what software is used: _Make-up_ will **make it work** (@see [Supported software](#supported-software)).
+No matter what project you are working on, no matter what software is used: 
+
+💋💄 _Make-up_ will **make it work** (@see [Make-up works with](#make-up-works-with)).
+
+---
 
 _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Initial project setup after git clone
+    📦 Initial project setup after git clone
   </summary>
   
   _Make-up_ installs all required tools to get you started with development.
@@ -27,7 +31,7 @@ _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Start developing process
+    🏃‍♀️ Start developing process
   </summary>
   
   _Make-up_ controls all necessary background-processes so that you can focus on programming.
@@ -35,7 +39,7 @@ _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Deployment
+    🚀 Deployment
   </summary>
   
   _Make-up_ shows you where and how you can successfully deploy your project.
@@ -43,13 +47,13 @@ _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Sync between environments
+    ♻️ Sync between environments
   </summary>
   
   _Make-up_ synchronizes databases and files between different environments.
 </details>
 
-More features [here](#features).
+And [so much more](#features).
 
 ---
 
@@ -72,8 +76,7 @@ More features [here](#features).
     - [Extend an existing command](#extend-an-existing-command)
     - [Create a new bash script](#create-a-new-bash-script)
   - [Troubleshooting](#troubleshooting)
-    - [Craft CMS 3](#craft-cms-3)
-      - [Invalid working directory specified](#invalid-working-directory-specified)
+    - [Craft 3](#craft-3)
   - [To Dos](#to-dos)
 
 <!-- /TOC -->
@@ -82,7 +85,7 @@ More features [here](#features).
 
 ## Requirements
 
-To run _Make-up_ you need a terminal application which can run _Linux_ commands.
+🖥 To run _Make-up_ you need a terminal application which can run _Linux_ commands.
 
 ### Tested Operating Systems
 
@@ -94,8 +97,8 @@ To run _Make-up_ you need a terminal application which can run _Linux_ commands.
 
 | Name     | Version |
 | -------- | ------- |
-| Terminal | 2.9.5   |
-| iTerm2   | 3.3.7   |
+| [Terminal](https://de.wikipedia.org/wiki/Terminal_(Apple)) | 2.9.5   |
+| [iTerm2](https://iterm2.com/)   | 3.3.7   |
 
 ## Features
 
@@ -112,28 +115,27 @@ make help
 
 _Make-up_ automatically detects the following tools/software and attempts to perform related tasks.
 
-- Craft CMS 3 (Docker) 3.4.1
-- Docker
-- NPM
-- Yarn
-- MySQL
-- GitLab Continuous Integration (CI) & Continuous Delivery (CD)
-- Git-ftp
+- [Craft CMS](https://craftcms.com/) <= 3.4.x (Docker, PHP 7.x)
+- [NPM](https://www.npmjs.com/)
+- [Yarn](https://yarnpkg.com/)
+- [MySQL](https://www.mysql.com/)
+- [GitLab Continuous Integration](https://about.gitlab.com/product/continuous-integration/) (CI) & Continuous Delivery (CD)
+- [Git-ftp](https://github.com/git-ftp/git-ftp)
 
 ## Add _Make-up_ to your project
 
-1. Add _Make-up_ as a _submodule_ to your project:
+1. Add _Make-up_ as a _git submodule_ to your project:
 
    ```bash
    cd my-project
    git submodule add https://github.com/fork/make-up
    ```
 
-   or get the latest files if Make-up is already listed in your [../.gitmodules](../.gitmodules):
+   or get the latest files if _Make-up_ is already listed in [../.gitmodules](../.gitmodules):
 
    ```bash
    cd my-project
-   git submodule update
+   git submodule update --init
    ```
 
 1. Install _Make-up_
@@ -149,7 +151,7 @@ _Make-up_ automatically detects the following tools/software and attempts to per
 
    <details>
       <summary>
-        My project already contains a <em>.env</em> file, can I continue using that one?
+        💡 My project already contains a <em>.env</em> file, can I continue using that one?
       </summary>
 
    **Yes you can.** Just create a reference:
@@ -300,7 +302,7 @@ chmod +x foo.bash
 
 ## Troubleshooting
 
-### Craft CMS 3
+### Craft 3
 
 <details>
   <summary>
@@ -309,16 +311,11 @@ chmod +x foo.bash
 
 ---
 
-#### Invalid working directory specified
-
-During installation this error message may come up:
-
-```
-[RuntimeException]
-Invalid working directory specified, /var/www/html does not exist.
-```
-
-**Solution:** Remove all docker containers and restart the project
+| Name                                           | Description                                                                                                                                                                                                          |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 'HTTP 503 – Service Unavailable' after install | ❓ If you installed Craft 3 and visit your sites Frontend, you will get a 503 error. <hr> ✅ Visit your sites Backend and follow the instructions. <hr> 💡 Use `$ make info` to get the URLs for Front- and Backend. |
+| 'HTTP 503 – Service Unavailable' after sync    | ❓ This error can also show up if you sync between environments. <hr> ✅ Restart the sync process.                                                                                                                   |
+| Invalid working directory specified    | ❓ During installation this error message may come up: `Invalid working directory specified, /var/www/html does not exist.` <hr> ✅ Remove all docker containers and restart the project.                                                                                                                   |
 
 ---
 
@@ -326,10 +323,8 @@ Invalid working directory specified, /var/www/html does not exist.
 
 ## To Dos
 
-- **20.01.2020** `make production-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
-- **20.01.2020** `make staging-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
-- **23.01.2020** Craft und docker sollten vielleicht in das Verzeichnis craft wandern, da docker für craft configuriert wurde.
+- **06.02.2020** Craft funktioniert nicht ohne unser docker setup, daher sollte das docker setup auch öffentlich verfügbar sein.
 
 ---
 
-Brought to you by [4rk](https://fork.de) – 01/2020
+Brought to you by [4rk](https://fork.de) – 02/2020

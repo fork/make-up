@@ -10,9 +10,9 @@ echo
 
 ok=false
 
-# try docker
-if [ -d "docker" ]; then
-  $my_dir/../docker/shell.bash
+# try craft 3
+if [ "$IDENT_DOCKER" = true ]; then
+  $my_dir/../craft-3/shell.bash
   ok=true
 fi
 
