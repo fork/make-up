@@ -72,9 +72,7 @@ More features [here](#features).
     - [Extend an existing command](#extend-an-existing-command)
     - [Create a new bash script](#create-a-new-bash-script)
   - [Troubleshooting](#troubleshooting)
-    - [Craft CMS 3](#craft-cms-3)
-      - [Error 503 after install](#error-503-after-install)
-      - [Invalid working directory specified](#invalid-working-directory-specified)
+    - [Craft 3](#craft-3)
   - [To Dos](#to-dos)
 
 <!-- /TOC -->
@@ -300,7 +298,7 @@ chmod +x foo.bash
 
 ## Troubleshooting
 
-### Craft CMS 3
+### Craft 3
 
 <details>
   <summary>
@@ -309,24 +307,11 @@ chmod +x foo.bash
 
 ---
 
-#### Error 503 after install
-
-If you installed Craft 3 and visit your sites Frontend, you will get a 503 error.
-
-**Solution:** Visit your sites Backend and follow the instructions.
-
-**Tip:** Use `$ make info` to get the URLs for Front- and Backend.
-
-#### Invalid working directory specified
-
-During installation this error message may come up:
-
-```
-[RuntimeException]
-Invalid working directory specified, /var/www/html does not exist.
-```
-
-**Solution:** Remove all docker containers and restart the project
+| Name                                           | Description                                                                                                                                                                                                          |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 'HTTP 503 – Service Unavailable' after install | ❓ If you installed Craft 3 and visit your sites Frontend, you will get a 503 error. <hr> ✅ Visit your sites Backend and follow the instructions. <hr> 💡 Use `$ make info` to get the URLs for Front- and Backend. |
+| 'HTTP 503 – Service Unavailable' after sync    | ❓ This error can also show up if you sync between environments. <hr> ✅ Restart the sync process.                                                                                                                   |
+| Invalid working directory specified    | ❓ During installation this error message may come up: `Invalid working directory specified, /var/www/html does not exist.` <hr> ✅ Remove all docker containers and restart the project.                                                                                                                   |
 
 ---
 
@@ -338,4 +323,4 @@ Invalid working directory specified, /var/www/html does not exist.
 
 ---
 
-Brought to you by [4rk](https://fork.de) – 01/2020
+Brought to you by [4rk](https://fork.de) – 02/2020
