@@ -6,20 +6,24 @@
 
 - _How to setup this project?_
 - _Which script will start the compilation?_
-- _How to deploy?_ or
+- _How to deploy?_
 - _How to sync between environments?_
 
-These things can really **slow down the process** of development if they are not sufficiently documented.
+😩 These things can really **slow down the process** of development if they are not sufficiently documented.
 
-By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity.
+By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity 🎨.
 
-No matter what project you are working on, no matter what software is used: _Make-up_ will **make it work** (@see [Make up works with](#make-up-works-with)).
+No matter what project you are working on, no matter what software is used: 
+
+💋💄 _Make-up_ will **make it work** (@see [Make-up works with](#make-up-works-with)).
+
+---
 
 _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Initial project setup after git clone
+    📦 Initial project setup after git clone
   </summary>
   
   _Make-up_ installs all required tools to get you started with development.
@@ -27,7 +31,7 @@ _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Start developing process
+    🏃‍♀️ Start developing process
   </summary>
   
   _Make-up_ controls all necessary background-processes so that you can focus on programming.
@@ -35,7 +39,7 @@ _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Deployment
+    🚀 Deployment
   </summary>
   
   _Make-up_ shows you where and how you can successfully deploy your project.
@@ -43,13 +47,13 @@ _Make-up_ does stuff like:
 
 <details>
   <summary>
-    Sync between environments
+    ♻️ Sync between environments
   </summary>
   
   _Make-up_ synchronizes databases and files between different environments.
 </details>
 
-More features [here](#features).
+And [so much more](#features).
 
 ---
 
@@ -81,7 +85,7 @@ More features [here](#features).
 
 ## Requirements
 
-To run _Make-up_ you need a terminal application which can run _Linux_ commands.
+🖥 To run _Make-up_ you need a terminal application which can run _Linux_ commands.
 
 ### Tested Operating Systems
 
@@ -93,8 +97,8 @@ To run _Make-up_ you need a terminal application which can run _Linux_ commands.
 
 | Name     | Version |
 | -------- | ------- |
-| Terminal | 2.9.5   |
-| iTerm2   | 3.3.7   |
+| [Terminal](https://de.wikipedia.org/wiki/Terminal_(Apple)) | 2.9.5   |
+| [iTerm2](https://iterm2.com/)   | 3.3.7   |
 
 ## Features
 
@@ -111,27 +115,27 @@ make help
 
 _Make-up_ automatically detects the following tools/software and attempts to perform related tasks.
 
-- Craft CMS 3.x (Docker)
-- NPM
-- Yarn
-- MySQL
-- GitLab Continuous Integration (CI) & Continuous Delivery (CD)
-- Git-ftp
+- [Craft CMS](https://craftcms.com/) <= 3.4.x (Docker, PHP 7.x)
+- [NPM](https://www.npmjs.com/)
+- [Yarn](https://yarnpkg.com/)
+- [MySQL](https://www.mysql.com/)
+- [GitLab Continuous Integration](https://about.gitlab.com/product/continuous-integration/) (CI) & Continuous Delivery (CD)
+- [Git-ftp](https://github.com/git-ftp/git-ftp)
 
 ## Add _Make-up_ to your project
 
-1. Add _Make-up_ as a _submodule_ to your project:
+1. Add _Make-up_ as a _git submodule_ to your project:
 
    ```bash
    cd my-project
    git submodule add https://github.com/fork/make-up
    ```
 
-   or get the latest files if Make-up is already listed in your [../.gitmodules](../.gitmodules):
+   or get the latest files if _Make-up_ is already listed in [../.gitmodules](../.gitmodules):
 
    ```bash
    cd my-project
-   git submodule update
+   git submodule update --init
    ```
 
 1. Install _Make-up_
@@ -147,7 +151,7 @@ _Make-up_ automatically detects the following tools/software and attempts to per
 
    <details>
       <summary>
-        My project already contains a <em>.env</em> file, can I continue using that one?
+        💡 My project already contains a <em>.env</em> file, can I continue using that one?
       </summary>
 
    **Yes you can.** Just create a reference:
