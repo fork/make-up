@@ -16,7 +16,7 @@ if [ -d "docker" ]; then
   $my_dir/../docker/up.bash
 
   # try craft (requires docker)
-  $my_dir/../craft/start.bash
+  $my_dir/../craft-3/start.bash
 
   ok=true
 fi

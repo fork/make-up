@@ -24,7 +24,7 @@ fi
 
 # try craft
 if [ -d "site/config" ]; then
-  $my_dir/../craft/info.bash
+  $my_dir/../craft-3/info.bash
   ok=true
 fi
 

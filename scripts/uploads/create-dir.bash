@@ -12,7 +12,7 @@ ok=false
 
 # try craft
 if [ -d "site/config" ]; then
-  $my_dir/../craft/uploads.bash
+  $my_dir/../craft-3/uploads.bash
   
   ok=true
 fi

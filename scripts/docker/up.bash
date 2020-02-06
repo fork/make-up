@@ -13,7 +13,7 @@ docker-compose up -d
 
 # Try Craft CMS 3 (install)
 if [ ! -d "site/config" ]; then
-  $my_dir/../craft/install.bash
+  $my_dir/../craft-3/install.bash
 fi
 
 echo
