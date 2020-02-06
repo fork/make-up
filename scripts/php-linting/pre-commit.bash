@@ -14,7 +14,6 @@ then
 fi
 SFILES=${SFILES:-$STAGED_FILES_CMD}
 
-echo "Checking PHP Lint..."
 for FILE in $SFILES
 do
 	php -l -d display_errors=0 $PROJECT/$FILE
