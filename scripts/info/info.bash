@@ -13,18 +13,14 @@ ok=false
 # try git
 if [ -d ".git" ]; then
   $my_dir/../git/info.bash
+  
   ok=true
 fi
 
-# try docker
+# try craft 3
 if [ -d "docker" ]; then
-  $my_dir/../docker/info.bash
-  ok=true
-fi
+  $my_dir/../craft-3/info.bash
 
-# try craft
-if [ -d "site/config" ]; then
-  $my_dir/../craft/info.bash
   ok=true
 fi
 

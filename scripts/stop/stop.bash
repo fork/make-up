@@ -10,9 +10,9 @@ echo
 
 ok=false
 
-# try docker
+# try craft 3
 if [ -d "docker" ]; then
-  $my_dir/../docker/stop.bash
+  $my_dir/../craft-3/stop.bash
   ok=true
 fi
 

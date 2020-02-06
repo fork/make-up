@@ -13,7 +13,7 @@ These things can really **slow down the process** of development if they are not
 
 By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity.
 
-No matter what project you are working on, no matter what software is used: _Make-up_ will **make it work** (@see [Supported software](#supported-software)).
+No matter what project you are working on, no matter what software is used: _Make-up_ will **make it work** (@see [Make up works with](#make-up-works-with)).
 
 _Make-up_ does stuff like:
 
@@ -73,6 +73,7 @@ More features [here](#features).
     - [Create a new bash script](#create-a-new-bash-script)
   - [Troubleshooting](#troubleshooting)
     - [Craft CMS 3](#craft-cms-3)
+      - [Error 503 after install](#error-503-after-install)
       - [Invalid working directory specified](#invalid-working-directory-specified)
   - [To Dos](#to-dos)
 
@@ -112,8 +113,7 @@ make help
 
 _Make-up_ automatically detects the following tools/software and attempts to perform related tasks.
 
-- Craft CMS 3 (Docker) 3.4.1
-- Docker
+- Craft CMS 3.x (Docker)
 - NPM
 - Yarn
 - MySQL
@@ -309,6 +309,14 @@ chmod +x foo.bash
 
 ---
 
+#### Error 503 after install
+
+If you installed Craft 3 and visit your sites Frontend, you will get a 503 error.
+
+**Solution:** Visit your sites Backend and follow the instructions.
+
+**Tip:** Use `$ make info` to get the URLs for Front- and Backend.
+
 #### Invalid working directory specified
 
 During installation this error message may come up:
@@ -326,9 +334,7 @@ Invalid working directory specified, /var/www/html does not exist.
 
 ## To Dos
 
-- **20.01.2020** `make production-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
-- **20.01.2020** `make staging-to-dev` funktioniert nicht wenn mysql nicht auf einem server installiert ist. das ist zwar richtig, im fork-kontext muss dafür aber eine lösung her.
-- **23.01.2020** Craft und docker sollten vielleicht in das Verzeichnis craft wandern, da docker für craft configuriert wurde.
+- **06.02.2020** Craft funktioniert nicht ohne unser docker setup, daher sollte das docker setup auch öffentlich verfügbar sein.
 
 ---
 

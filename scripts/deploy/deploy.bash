@@ -25,10 +25,31 @@ if [ -f ".git-ftp-config" ]; then
 fi
 
 # try '$ npm run deploy'
-deploycommand=$(npm run deploy --if-present)
-if [ -n "$deploycommand" ]; then
+if grep -q \"deploy\" "package.json"; then
+  echo
   echo "  → ${BOLD}Task found in ./package.json${NC}"
   echo "    $ npm run deploy"
+
+  echo
+  echo -n "$I18N_QUESTION Run 'npm run deploy'? (y/n)"
+  read answer
+
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+
+    echo
+    echo "$I18N_TASK Run '$ npm run deploy'"
+    echo
+
+    npm run deploy
+
+    echo
+    echo "$I18N_SUCCESS Success"
+    echo
+  else
+    echo
+    echo "$I18N_WARNING Skipped '$ npm run deploy'"
+    echo
+  fi
 
   ok=true
 fi

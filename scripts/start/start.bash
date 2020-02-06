@@ -10,13 +10,13 @@ echo
 
 ok=false
 
-# try docker
+# try craft 3
 if [ -d "docker" ]; then
   # up docker container
-  $my_dir/../docker/up.bash
+  $my_dir/../craft-3/up.bash
 
-  # try craft (requires docker)
-  $my_dir/../craft/start.bash
+  # try craft 3 (requires docker)
+  $my_dir/../craft-3/start.bash
 
   ok=true
 fi

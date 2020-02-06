@@ -11,9 +11,10 @@ echo
 ok=false
 ARGS=$@
 
-# try docker
-if [ -d "docker" ]; then
-  $my_dir/../docker/composer-run.bash $ARGS
+# try craft 3
+if [ "$IDENT_CRAFT_3" = true ]; then
+  $my_dir/../craft-3/composer-run.bash $ARGS
+  
   ok=true
 fi
 

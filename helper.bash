@@ -24,14 +24,14 @@
 
 # --- end copy --- #
 
-# Text transforms 
+# Text transforms
 # @see https://linux.101hacks.com/ps1-examples/prompt-color-using-tput/
 # Usage:
 #   echo "A ${BOLD}solid${NC} statement."
 BOLD=$(tput bold)
 REV=$(tput rev)
 
-# Colour 
+# Colour
 # @see https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 # Usage:
 #   echo "Roses are ${RED}red${NC}, violets are ${BLUE}blue${NC}."
@@ -55,3 +55,27 @@ I18N_TASK="  ${BLUE}TASK${NC}"
 I18N_SUCCESS="    ${GREEN}SUCCESS${NC}"
 I18N_WARNING="    ${YELLOW}WARNING${NC}"
 I18N_ERROR="    ${RED}ERROR${NC}"
+I18N_INFO="    ${WHITE}INFO${NC}"
+I18N_QUESTION="  ${MAGENTA}QUESTION${NC}"
+
+# Software identifier
+
+# Identify 'Craft 3'
+if [ -d "site/config" ]; then
+  IDENT_CRAFT_3=true
+fi
+
+# Identify 'Node modules'
+if [ -d "node_modules" ]; then
+  IDENT_NODE_MODULES=true
+fi
+
+# Identify 'Yarn'
+if [ -f "yarn.lock" ]; then
+  IDENT_YARN=true
+fi
+
+# Identify 'NPM'
+if [ -f "package-lock.json" ]; then
+  IDENT_NPM=true
+fi
