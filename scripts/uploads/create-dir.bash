@@ -10,8 +10,8 @@ echo
 
 ok=false
 
-# try craft
-if [ -d "site/config" ]; then
+# try craft 3
+if [ "$IDENT_CRAFT_3" = true ]; then
   $my_dir/../craft-3/uploads.bash
   
   ok=true

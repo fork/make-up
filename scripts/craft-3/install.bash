@@ -5,17 +5,31 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK Craft CMS 3"
+echo "$I18N_TASK 'Craft 3' → Install"
 echo
 
-echo -n "Would you like to install Craft CMS 3 (y/n)? "
-read answer
+ok=false
 
-if [ "$answer" != "${answer#[Yy]}" ]; then
-  docker-compose exec php composer create-project craftcms/craft /var/www/html
-  docker-compose exec php composer --working-dir=/var/www/html require --dev squizlabs/php_codesniffer
+if [ ! "$IDENT_CRAFT_3" = true ]; then
+  echo -n "Would you like to install 'Craft 3' with docker? (y/n)"
+  read answer
+
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    if [ -d "docker" ]; then
+      docker-compose exec php composer create-project craftcms/craft /var/www/html
+      docker-compose exec php composer --working-dir=/var/www/html require --dev squizlabs/php_codesniffer
+    else
+      echo
+      echo "$I18N_ERROR Docker is required to run this command"
+      echo
+    fi
+  else
+    echo
+    echo "$I18N_WARNING Skipped"
+    echo
+  fi
 else
   echo
-  echo "$I18N_WARNING Skipped"
+  echo "$I18N_WARNING Craft 3 is already installed"
   echo
 fi

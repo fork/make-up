@@ -5,51 +5,57 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK Craft CMS 3: Uploads directory"
+echo "$I18N_TASK 'Craft 3' → Uploads directory"
 echo
 
-# params
-UPLOADS=null
+ok=false
 
-# create uploads directory from E_DEV_UPLOADS
-if [ ! -z "$E_DEV_UPLOADS" ]; then
-  UPLOADS=$E_DEV_UPLOADS
-fi
+if [ ! "$IDENT_CRAFT_3" = true ]; then 
+  # params
+  UPLOADS=null
 
-# create uploads directory from INITIAL_UPLOADS
-if [ -z "$E_DEV_UPLOADS" ]; then
-  UPLOADS=$INITIAL_UPLOADS
-fi
+  # create uploads directory from E_DEV_UPLOADS
+  if [ ! -z "$E_DEV_UPLOADS" ]; then
+    UPLOADS=$E_DEV_UPLOADS
+  fi
 
-mkdir -p $UPLOADS
+  # create uploads directory from INITIAL_UPLOADS
+  if [ -z "$E_DEV_UPLOADS" ]; then
+    UPLOADS=$INITIAL_UPLOADS
+  fi
 
-if [ -d "$UPLOADS" ]; then
-  echo
-  echo "$I18N_SUCCESS Your Craft Uploads are here: $UPLOADS"
-  echo
+  # create directory
+  mkdir -p $UPLOADS
 
-  YOUR_GIT_IGNORE=.gitignore
+  # test if directory now exists
+  if [ -d "$UPLOADS" ]; then
+    YOUR_GIT_IGNORE=.gitignore
 
-  echo
-  echo "$I18N_TASK Add $UPLOADS to $YOUR_GIT_IGNORE"
-  echo
-
-  # check if $UPLOADS is already in $YOUR_GIT_IGNORE
-  if grep -Fxq "$UPLOADS" $YOUR_GIT_IGNORE; then
     echo
-    echo "$I18N_SUCCESS Done"
+    echo "$I18N_SUCCESS Your Craft Uploads are here: $UPLOADS"
     echo
+    echo "$I18N_TASK Add $UPLOADS to $YOUR_GIT_IGNORE"
+    echo
+
+    # check if $UPLOADS is already in $YOUR_GIT_IGNORE
+    if grep -Fxq "$UPLOADS" $YOUR_GIT_IGNORE; then
+      echo
+      echo "$I18N_SUCCESS Done"
+      echo
+    else
+      printf "\n$UPLOADS" >>$YOUR_GIT_IGNORE
+
+      echo
+      echo "$I18N_SUCCESS Done"
+      echo
+    fi
   else
-    printf "\n$UPLOADS" >>$YOUR_GIT_IGNORE
-
     echo
-    echo "$I18N_SUCCESS Done"
+    echo "$I18N_ERROR Could not create directory $UPLOADS"
     echo
   fi
-else
-  echo
-  echo "$I18N_ERROR Could not create directory $UPLOADS"
-  echo
+
+  ok=true
 fi
 
 # more-make-up

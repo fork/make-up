@@ -4,13 +4,24 @@
 my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
-# Craft CMS project information
-if [ -d "site" ]; then
-  echo
-  echo "$I18N_TASK Craft CMS 3"
-  echo
+ok=false
 
+echo
+echo "$I18N_TASK 'Craft 3' → Info"
+echo
+
+# Display docker images
+if [ -d "docker" ]; then
+
+  docker-compose images
+
+  ok=true
+fi
+
+# Craft CMS project information
+if [ "$IDENT_CRAFT_3" = true ]; then
   # craft
+  echo 
   echo "  → ${BOLD}Frontend${NC}"
   echo "    http://$FOLDER_NAME.localhost/"
 
@@ -28,6 +39,8 @@ if [ -d "site" ]; then
   echo
   echo "  → ${BOLD}Env-file${NC}"
   echo "    site/.env"
+
+  ok=true
 fi
 
 # more-make-up
@@ -44,4 +57,14 @@ if [ -f "$MORE_MAKE_UP" ]; then
   echo
 
   ok=true
+fi
+
+if [ "$ok" = true ]; then
+  echo
+  echo "$I18N_SUCCESS Done"
+  echo
+else
+  echo
+  echo "$I18N_ERROR Could not find a method to execute command"
+  echo
 fi

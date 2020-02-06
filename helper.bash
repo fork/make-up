@@ -55,3 +55,10 @@ I18N_TASK="  ${BLUE}TASK${NC}"
 I18N_SUCCESS="    ${GREEN}SUCCESS${NC}"
 I18N_WARNING="    ${YELLOW}WARNING${NC}"
 I18N_ERROR="    ${RED}ERROR${NC}"
+I18N_INFO="    ${WHITE}INFO${NC}"
+I18N_QUESTION="  ${MAGENTA}QUESTION${NC}"
+
+# Software identifier
+if [ -d "site/config" ]; then
+  IDENT_CRAFT_3=true # Craft 3
+fi

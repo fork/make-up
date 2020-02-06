@@ -5,18 +5,24 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK 🐳 Stopping docker"
+echo "$I18N_TASK 'Craft 3' → Enter shell in docker container"
 echo
 
-# stop
-docker-compose stop
+ok=false
 
-# down
-docker-compose down -v
+if [ -d "docker" ]; then
+  docker-compose exec php /bin/sh
 
-echo
-echo "$I18N_SUCCESS Done"
-echo
+  echo
+  echo "$I18N_SUCCESS Done"
+  echo
+
+  ok=true
+else
+  echo
+  echo "$I18N_ERROR Docker is required to run this command"
+  echo  
+fi
 
 # more-make-up
 MORE_MAKE_UP="${0/make-up/more-make-up}"
