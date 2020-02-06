@@ -111,6 +111,8 @@ cd my-project
 make help
 ```
 
+![make help](./static/screenshot-make-help.png)
+
 ### _Make-up_ works with
 
 _Make-up_ automatically detects the following tools/software and attempts to perform related tasks.
