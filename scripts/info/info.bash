@@ -11,7 +11,7 @@ echo
 ok=false
 
 # try git
-if [ -d ".git" ]; then
+if [ "$IDENT_GIT" = true ]; then
   $my_dir/../git/info.bash
   
   ok=true

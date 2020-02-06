@@ -84,3 +84,8 @@ fi
 if [ -f "package-lock.json" ]; then
   IDENT_NPM=true
 fi
+
+# Identify 'Git'
+if [ -d ".git" ]; then
+  IDENT_GIT=true
+fi
