@@ -10,7 +10,7 @@ echo
 
 ok=false
 
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
   docker-compose exec php /bin/sh
 
   echo

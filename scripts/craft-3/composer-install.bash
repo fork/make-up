@@ -10,7 +10,7 @@ echo
 
 ok=false
 
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
   docker-compose exec php composer --working-dir=/var/www/html install
 
   if [ -d "site/vendor" ]; then

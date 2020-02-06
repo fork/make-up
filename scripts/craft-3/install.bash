@@ -15,7 +15,7 @@ if [ ! "$IDENT_CRAFT_3" = true ]; then
   read answer
 
   if [ "$answer" != "${answer#[Yy]}" ]; then
-    if [ -d "docker" ]; then
+    if [ "$IDENT_DOCKER" = true ]; then
       docker-compose exec php composer create-project craftcms/craft /var/www/html
       docker-compose exec php composer --working-dir=/var/www/html require --dev squizlabs/php_codesniffer
     else

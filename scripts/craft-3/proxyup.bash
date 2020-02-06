@@ -10,7 +10,7 @@ echo
 
 ok=false
 
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
   cd / && curl https://lab.fork.de/snippets/3/raw | docker-compose -f - up -d || docker start nginx-proxy
 
   echo

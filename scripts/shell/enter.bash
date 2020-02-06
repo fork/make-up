@@ -11,7 +11,7 @@ echo
 ok=false
 
 # try craft 3
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
   $my_dir/../craft-3/shell.bash
   ok=true
 fi

@@ -10,7 +10,7 @@ echo
 
 ok=false
 
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
   NOW=$(date +"%Y-%m-%d_%H-%M")
   DUMP_DIR=backups
   DUMP_NAME=craft_$NOW

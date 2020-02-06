@@ -60,6 +60,11 @@ I18N_QUESTION="  ${MAGENTA}QUESTION${NC}"
 
 # Software identifier
 
+# Identify 'Docker'
+if [ -d "docker" ]; then
+  IDENT_DOCKER=true
+fi
+
 # Identify 'Craft 3'
 if [ -d "site/config" ]; then
   IDENT_CRAFT_3=true

@@ -10,7 +10,7 @@ echo
 
 ok=false
 
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
   docker ps | grep -q nginx-proxy || $my_dir/proxyup.bash
   docker-compose up -d
 

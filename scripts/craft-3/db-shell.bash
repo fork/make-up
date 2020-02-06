@@ -10,7 +10,7 @@ echo
 
 ok=false
 
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
   # check if all neccesary information is given
   if
     [ ! -n "$DB_DRIVER" ] ||

@@ -11,7 +11,7 @@ echo "$I18N_TASK 'Craft 3' → Info"
 echo
 
 # Display docker images
-if [ -d "docker" ]; then
+if [ "$IDENT_DOCKER" = true ]; then
 
   docker-compose images
 
