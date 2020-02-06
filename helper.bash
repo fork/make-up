@@ -89,3 +89,13 @@ fi
 if [ -d ".git" ]; then
   IDENT_GIT=true
 fi
+
+# Identify 'GitLab CI'
+if [ -f ".gitlab-ci.yml" ]; then
+  IDENT_GITLAB_CI=true
+fi
+
+# Identify 'Git-ftp'
+if [ -f ".git-ftp-config" ]; then
+  IDENT_GIT_FTP=true
+fi

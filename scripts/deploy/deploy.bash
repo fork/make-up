@@ -11,14 +11,14 @@ echo
 ok=false
 
 # try gitlab-ci
-if [ -f ".gitlab-ci.yml" ]; then
+if [ "$IDENT_GITLAB_CI" = true ]; then
   $my_dir/../git/gitlab-ci.bash
 
   ok=true
 fi
 
 # try git-ftp
-if [ -f ".git-ftp-config" ]; then
+if [ "$IDENT_GIT_FTP" = true ]; then
   $my_dir/../git/git-ftp.bash
   
   ok=true
