@@ -5,9 +5,12 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Craft CMS 3: Setup Environment"
+echo "$I18N_TASK 'Craft 3' → Setup Environment"
 echo
 
+ok=false
+
+rootEnv=".env"
 file="site/.env"
 file_example="site/.env.example"
 file_backup="site/.env.original"
@@ -67,26 +70,55 @@ DB_DRIVER="mysql"
 EOF
 }
 
+# create reference to craft's .env in project root .env
+touch $rootEnv
+
+if [ -f "$rootEnv" ]; then
+  echo
+  echo "$I18N_TASK Create a reference to $file in $rootEnv"
+  echo
+
+  STRING="ENV_FILE=$file"
+
+  # check if $STRING is already in $rootEnv
+  if grep -Fxq "$STRING" $rootEnv; then
+    echo
+    echo "$I18N_SUCCESS Done"
+    echo
+  else
+    printf "\n$STRING" >>$rootEnv
+
+    echo
+    echo "$I18N_SUCCESS Done"
+    echo
+  fi
+else
+  echo
+  echo "$I18N_ERROR Could not find $rootEnv"
+  echo
+fi
+
+
 if [ -f "$file" ]; then
   echo
-  echo "  ${YELLOW}WARNING${NC} Existing $file found, creating backup"
+  echo "$I18N_WARNING Existing $file found, creating backup"
   echo
 
   cp $file $file_backup
 
   if [ -f "$file_backup" ]; then
     echo
-    echo "  ${GREEN}Success${NC} Created $file_backup from $file"
+    echo "$I18N_SUCCESS Created $file_backup from $file"
     echo
   else
     echo
-    echo "  ${RED}ERROR${NC} Could not create $file_backup from $file"
+    echo "$I18N_ERROR Could not create $file_backup from $file"
     echo
   fi
 fi
 
 echo
-echo "  ${BLUE}TASK${NC} Create $file from $file_example"
+echo "$I18N_TASK Create $file from $file_example"
 echo
 
 if [ -f "$file_example" ]; then
@@ -94,27 +126,27 @@ if [ -f "$file_example" ]; then
   cp $file_example $file
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 else
   echo
-  echo "  ${RED}ERROR${NC} $file_example not found. Craft installation is corrupted."
+  echo "$I18N_ERROR $file_example not found. Craft installation is corrupted."
   echo
 fi
 
 if [ -f "$file" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Generating a security key in $file"
+  echo "$I18N_TASK Generating a security key in $file"
 
   # Generating a security key
   ./site/craft setup/security-key
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   echo
-  echo "  ${BLUE}TASK${NC} Make injections to $file"
+  echo "$I18N_TASK Make injections to $file"
   echo
 
   # Add information for environment 'dev'
@@ -135,11 +167,11 @@ if [ -f "$file" ]; then
   envProduction
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   echo
-  echo "  ${BLUE}TASK${NC} Make replacements in $file"
+  echo "$I18N_TASK Make replacements in $file"
   echo
 
   # Replace some values to connect with docker database
@@ -155,7 +187,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="site/web/uploads"
   QUESTION="Set relative path to uploads for ${WHITE}dev${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -167,7 +199,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="USER"
   QUESTION="Set SSH user for ${YELLOW}staging${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -179,7 +211,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="HOST"
   QUESTION="Set SSH host for ${YELLOW}staging${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -191,7 +223,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="PROJECT_HOME"
   QUESTION="Set path to project home for ${YELLOW}staging${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -203,7 +235,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="UPLOADS"
   QUESTION="Set absolute path to uploads for ${YELLOW}staging${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -215,7 +247,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="PASSWORD"
   QUESTION="Set database password for ${YELLOW}staging${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -227,7 +259,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="DB_USER"
   QUESTION="Set database user for ${YELLOW}staging${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -239,7 +271,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="DB_NAME"
   QUESTION="Set database name for ${YELLOW}staging${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -251,7 +283,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="USER"
   QUESTION="Set SSH user for ${GREEN}production${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -263,7 +295,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="HOST"
   QUESTION="Set SSH host for ${GREEN}production${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -275,7 +307,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="PROJECT_HOME"
   QUESTION="Set path to project home for ${GREEN}production${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -287,7 +319,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="UPLOADS"
   QUESTION="Set absolute path to uploads for ${GREEN}production${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -299,7 +331,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="PASSWORD"
   QUESTION="Set database password for ${GREEN}production${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -311,7 +343,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="DB_USER"
   QUESTION="Set database user for ${GREEN}production${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -323,7 +355,7 @@ if [ -f "$file" ]; then
   DEFAULT_VALUE="DB_NAME"
   QUESTION="Set database name for ${GREEN}production${NC}"
 
-  echo "  ${MAGENTA}QUESTION${NC} $QUESTION (default: $DEFAULT_VALUE)"
+  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
   read -p "  " answer
   if [ -n "$answer" ]; then
     sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
@@ -334,11 +366,11 @@ if [ -f "$file" ]; then
   echo "  ${WHITE}INFO${NC} Please visit $file and fill in missing information"
 
   echo
-  echo "  ${GREEN}Success${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 else
   echo
-  echo "  ${RED}ERROR${NC} Could not create $file from $file_example"
+  echo "$I18N_ERROR Could not create $file from $file_example"
   echo
 fi
 
@@ -346,13 +378,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true

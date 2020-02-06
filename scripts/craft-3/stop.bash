@@ -5,16 +5,27 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK Enter database shell"
+echo "$I18N_TASK 'Craft 3' → Stop"
 echo
 
 ok=false
 
-# try craft 3
-if [ "$IDENT_CRAFT_3" = true ]; then
-  $my_dir/../craft-3/db-shell.bash
+if [ "$IDENT_DOCKER" = true ]; then
+  # stop
+  docker-compose stop
+
+  # down
+  docker-compose down -v
+
+  echo
+  echo "$I18N_SUCCESS Done"
+  echo
 
   ok=true
+else
+  echo
+  echo "$I18N_ERROR Docker is required to run this command"
+  echo
 fi
 
 # more-make-up
@@ -31,14 +42,4 @@ if [ -f "$MORE_MAKE_UP" ]; then
   echo
 
   ok=true
-fi
-
-if [ "$ok" = true ]; then
-  echo
-  echo "$I18N_SUCCESS Done"
-  echo
-else
-  echo
-  echo "$I18N_ERROR Could not find a method to execute command"
-  echo
 fi

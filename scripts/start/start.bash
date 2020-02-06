@@ -5,18 +5,18 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Start developing"
+echo "$I18N_TASK Start developing"
 echo
 
 ok=false
 
-# try docker
-if [ -d "docker" ]; then
+# try craft 3
+if [ "$IDENT_DOCKER" = true ]; then
   # up docker container
-  $my_dir/../docker/up.bash
+  $my_dir/../craft-3/up.bash
 
-  # try craft (requires docker)
-  $my_dir/../craft/start.bash
+  # try craft 3 (requires docker)
+  $my_dir/../craft-3/start.bash
 
   ok=true
 fi
@@ -25,13 +25,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true
@@ -39,10 +39,10 @@ fi
 
 if [ "$ok" = true ]; then
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 else
   echo
-  echo "  ${RED}ERROR${NC} Could not find a method to execute command"
+  echo "$I18N_ERROR Could not find a method to execute command"
   echo
 fi

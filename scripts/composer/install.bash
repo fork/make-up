@@ -5,14 +5,15 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Install composer"
+echo "$I18N_TASK Install composer"
 echo
 
 ok=false
 
-# try docker
-if [ -d "docker" ]; then
-  $my_dir/../docker/composer-install.bash
+# try craft 3
+if [ "$IDENT_CRAFT_3" = true ]; then
+  $my_dir/../craft-3/composer-install.bash
+  
   ok=true
 fi
 
@@ -20,13 +21,13 @@ fi
 MORE_MAKE_UP="${0/make-up/more-make-up}"
 if [ -f "$MORE_MAKE_UP" ]; then
   echo
-  echo "  ${BLUE}TASK${NC} Run more Make-up from $MORE_MAKE_UP"
+  echo "$I18N_TASK Run more Make-up from $MORE_MAKE_UP"
   echo
 
   $MORE_MAKE_UP
 
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 
   ok=true
@@ -34,10 +35,10 @@ fi
 
 if [ "$ok" = true ]; then
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 else
   echo
-  echo "  ${RED}ERROR${NC} Could not find a method to execute command"
+  echo "$I18N_ERROR Could not find a method to execute command"
   echo
 fi

@@ -5,7 +5,7 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "  ${BLUE}TASK${NC} Git info"
+echo "$I18N_TASK 'Git' → Info"
 echo
 
 repository=$(git config --get remote.origin.url)
@@ -14,10 +14,10 @@ if [ -n "$repository" ]; then
   echo "  → ${BOLD}Repository${NC}"
   echo "    $repository"
   echo
-  echo "  ${GREEN}SUCCESS${NC} Done"
+  echo "$I18N_SUCCESS Done"
   echo
 else
   echo
-  echo "  ${RED}ERROR${NC} Could not find repository"
+  echo "$I18N_ERROR Could not find repository"
   echo
 fi

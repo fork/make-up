@@ -11,27 +11,27 @@
 ##   $my_dir/my-script.bash
 
 # echo
-# echo "  ${BLUE}TASK${NC} My task"
+# echo "$I18N_TASK My task"
 # echo
 
 # echo
-# echo "  ${RED}ERROR${NC} My error"
+# echo "$I18N_ERROR My error"
 # echo
 
 # echo
-# echo "  ${GREEN}SUCCESS${NC} Done"
+# echo "$I18N_SUCCESS Done"
 # echo
 
 # --- end copy --- #
 
-# Text transforms 
+# Text transforms
 # @see https://linux.101hacks.com/ps1-examples/prompt-color-using-tput/
 # Usage:
 #   echo "A ${BOLD}solid${NC} statement."
 BOLD=$(tput bold)
 REV=$(tput rev)
 
-# Colour 
+# Colour
 # @see https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 # Usage:
 #   echo "Roses are ${RED}red${NC}, violets are ${BLUE}blue${NC}."
@@ -49,3 +49,53 @@ FOLDER_NAME=${PWD##*/}
 
 # craft uploads directory
 INITIAL_UPLOADS=site/web/uploads
+
+# Make-Up commands
+I18N_TASK="  ${BLUE}TASK${NC}"
+I18N_SUCCESS="    ${GREEN}SUCCESS${NC}"
+I18N_WARNING="    ${YELLOW}WARNING${NC}"
+I18N_ERROR="    ${RED}ERROR${NC}"
+I18N_INFO="    ${WHITE}INFO${NC}"
+I18N_QUESTION="  ${MAGENTA}QUESTION${NC}"
+
+# Software identifier
+
+# Identify 'Docker'
+if [ -d "docker" ]; then
+  IDENT_DOCKER=true
+fi
+
+# Identify 'Craft 3'
+if [ -d "site/config" ]; then
+  IDENT_CRAFT_3=true
+fi
+
+# Identify 'Node modules'
+if [ -d "node_modules" ]; then
+  IDENT_NODE_MODULES=true
+fi
+
+# Identify 'Yarn'
+if [ -f "yarn.lock" ]; then
+  IDENT_YARN=true
+fi
+
+# Identify 'NPM'
+if [ -f "package-lock.json" ]; then
+  IDENT_NPM=true
+fi
+
+# Identify 'Git'
+if [ -d ".git" ]; then
+  IDENT_GIT=true
+fi
+
+# Identify 'GitLab CI'
+if [ -f ".gitlab-ci.yml" ]; then
+  IDENT_GITLAB_CI=true
+fi
+
+# Identify 'Git-ftp'
+if [ -f ".git-ftp-config" ]; then
+  IDENT_GIT_FTP=true
+fi
