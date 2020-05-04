@@ -14,9 +14,6 @@ if [ "$IDENT_DOCKER" = true ]; then
   # stop
   docker-compose stop
 
-  # down
-  docker-compose down -v
-
   echo
   echo "$I18N_SUCCESS Done"
   echo
