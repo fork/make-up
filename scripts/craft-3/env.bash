@@ -26,7 +26,7 @@ envDev() {
 E_DEV_UPLOADS=$INITIAL_UPLOADS
 
 # Default Site URL
-DEFAULT_SITE_URL="http://$FOLDER_NAME.localhost"
+DEFAULT_SITE_URL="http://$PROJECT_NAME.localhost"
 EOF
 }
 

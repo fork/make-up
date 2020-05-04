@@ -44,9 +44,6 @@ CYAN=${REV}$(tput setaf 6)
 WHITE=${REV}$(tput setaf 7)
 NC=$(tput sgr0) # No Color
 
-# Define FOLDER_NAME
-FOLDER_NAME=${PWD##*/}
-
 # craft uploads directory
 INITIAL_UPLOADS=site/web/uploads
 

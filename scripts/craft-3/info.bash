@@ -23,17 +23,17 @@ if [ "$IDENT_CRAFT_3" = true ]; then
   # craft
   echo 
   echo "  → ${BOLD}Frontend${NC}"
-  echo "    http://$FOLDER_NAME.localhost/"
+  echo "    http://$PROJECT_NAME.localhost/"
 
   # craft backend
   echo
   echo "  → ${BOLD}Backend${NC}"
-  echo "    http://$FOLDER_NAME.localhost/admin"
+  echo "    http://$PROJECT_NAME.localhost/admin"
 
   # mailhog
   echo
   echo "  → ${BOLD}Mailhog${NC}"
-  echo "    http://mailhog.$FOLDER_NAME.localhost"
+  echo "    http://mailhog.$PROJECT_NAME.localhost"
 
   # env-file
   echo
