@@ -64,12 +64,20 @@ help:
 # Define ARGS so we can use arguments within a Makefile method: `$ make <method> args`
 ARGS = $(filter-out $@,$(MAKECMDGOALS))
 
-# Define FOLDER_NAME
-FOLDER_NAME := $(notdir $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST))))))
-export FOLDER_NAME
+# Define PROJECT_NAME
+FOLDER_NAME := $(notdir $(shell pwd))
+MAKE_UP_FOLDER_NAME := $(notdir $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST))))))
+# Use git project name if available
+GIT_PROJECT_NAME := $(shell basename `git rev-parse --show-toplevel 2>/dev/null` 2>/dev/null)
+ifdef GIT_PROJECT_NAME
+PROJECT_NAME := $(GIT_PROJECT_NAME)
+else
+PROJECT_NAME := $(FOLDER_NAME)
+endif
+export PROJECT_NAME
 
 # Define path to HELPER_SCRIPTS
-HELPER_SCRIPTS="$(FOLDER_NAME)/scripts"
+HELPER_SCRIPTS="$(MAKE_UP_FOLDER_NAME)/scripts"
 
 # Define path to ENV_FILE
 ORIGINAL_ENV_FILE=.env
