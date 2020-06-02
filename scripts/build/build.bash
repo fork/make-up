@@ -5,28 +5,14 @@ my_dir="$(dirname "$0")"
 source "$my_dir/../../helper.bash"
 
 echo
-echo "$I18N_TASK Deploy"
+echo "$I18N_TASK Build"
 echo
 
 ok=false
 
-# try gitlab-ci
-if [ "$IDENT_GITLAB_CI" = true ]; then
-  $my_dir/../git/gitlab-ci.bash
-
-  ok=true
-fi
-
-# try git-ftp
-if [ "$IDENT_GIT_FTP" = true ]; then
-  $my_dir/../git/git-ftp.bash
-  
-  ok=true
-fi
-
-# try task 'deploy' from package.json
+# try task 'build' from package.json
 if [ -f "package.json" ]; then
-  if grep -q \"deploy\" "package.json"; then
+  if grep -q \"build\" "package.json"; then
     # yarn
     if [ "$IDENT_YARN" = true ]; then
       manager="yarn"
@@ -40,26 +26,26 @@ if [ -f "package.json" ]; then
     echo
     echo "${I18N_INFO} Task found in ./package.json"
     echo 
-    echo "  → deploy"
+    echo "  → build"
 
     if [ -n "$manager" ]; then
       echo
 
-      echo -n "$I18N_QUESTION Run '$ $manager deploy'? (y/n)"
+      echo -n "$I18N_QUESTION Run '$ $manager build'? (y/n)"
       read answer
       echo
     
       if [ "$answer" != "${answer#[Yy]}" ]; then
-        echo "$I18N_TASK Run '$ $manager deploy'"
+        echo "$I18N_TASK Run '$ $manager build'"
         echo 
 
-        $manager deploy
+        $manager build
 
         echo
         echo "$I18N_SUCCESS Success"
         echo
       else
-        echo "$I18N_WARNING Skipped '$ $manager deploy'"
+        echo "$I18N_WARNING Skipped '$ $manager build'"
         echo
       fi
     fi

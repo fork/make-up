@@ -144,6 +144,10 @@ restart:
 	@make stop
 	@make start
 
+## Build
+build:
+	@./$(HELPER_SCRIPTS)/build/build.bash
+
 ## Run composer (Example: '$ make composer require foo/bar')
 composer:
 	@./$(HELPER_SCRIPTS)/composer/composer.bash $(ARGS)
