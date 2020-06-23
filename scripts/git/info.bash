@@ -9,10 +9,18 @@ echo "$I18N_TASK 'Git' → Info"
 echo
 
 repository=$(git config --get remote.origin.url)
+domain="${repository[@]//://}"
+domain="${domain[@]//.git/}"
+domain="${domain[@]//git@/}"
+domain="https://${domain}"
+pipelines="${domain}/-/pipelines"
 
 if [ -n "$repository" ]; then
   echo "  → ${BOLD}Repository${NC}"
-  echo "    $repository"
+  echo "    $domain"
+  echo
+  echo "  → ${BOLD}Pipelines${NC}"
+  echo "    $pipelines"
   echo
   echo "$I18N_SUCCESS Done"
   echo

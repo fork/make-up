@@ -10,14 +10,27 @@ echo
 
 if [ "$IDENT_GITLAB_CI" = true ]; then
   repository=$(git config --get remote.origin.url)
+  domain="${repository[@]//://}"
+  domain="${domain[@]//.git/}"
+  domain="${domain[@]//git@/}"
+  domain="https://${domain}"
+  pipelines="${domain}/-/pipelines"
 
-  echo "    Configuration: ./.gitlab-ci.yml"
+  echo "  → ${BOLD}Configuration${NC}"
+  echo "    ./.gitlab-ci.yml"
+  echo
+
   if [ -n "$repository" ]; then
-    echo "    Repository: $repository"
+    echo "  → ${BOLD}Repository${NC}"
+    echo "    $domain"
+    echo
+    echo "  → ${BOLD}Pipelines${NC}"
+    echo "    $pipelines"
+    echo
   else
     echo "    Repository: not found"
   fi
-  echo "    Official Documentation: https://about.gitlab.com/product/continuous-integration/"
+  echo "    Official Documentation of GitLab CI: https://about.gitlab.com/product/continuous-integration/"
   echo
   echo "$I18N_SUCCESS Done"
   echo
