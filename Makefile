@@ -121,7 +121,7 @@ install-make-up:
 info:
 	@./$(HELPER_SCRIPTS)/info/info.bash
 
-## Initial project setup
+## Initial project setup or an alias for 'start' if the project was already set up
 up:
 	@if [ ! -f ".env" ]; then \
 		touch .env; \
