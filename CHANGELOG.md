@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3.2] - 2020-08-28
+
+## Added 
+
+- reworked make info and make deploy when displaying information about the git repository (tested with gitlab)
+- completed task description for 'make up'
+- ask user if staging and production environments shall be configured
+- check ssh status only once
+- .env replacements for craft 3.5
+
+## Fixed
+
+- fix error 'grep: package.json: No such file or directory' in task 'make deploy'
+- change identify method for 'Craft 3'
+- fix npm start not using yarn if available
+- fix 'make up' task overwriting existing .env file
+  fall back to 'make start' when .env exists
+  to re-init project, delete .env before running 'make up'
+- make status check more interactive in case the host is not in known_hosts yet
+- don't show error if node_modules have been installed
+
 ## [v0.0.3.1] - 2020-05-29
 
 ## Added 
