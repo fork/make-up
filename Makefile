@@ -123,12 +123,16 @@ info:
 
 ## Initial project setup
 up:
-	@touch .env
-	@./$(HELPER_SCRIPTS)/start/start.bash
-	@./$(HELPER_SCRIPTS)/env/create.bash
-	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
-	@make help
-	@./$(HELPER_SCRIPTS)/frontend/node_modules.bash
+	@if [ ! -f ".env" ]; then \
+		touch .env; \
+		./$(HELPER_SCRIPTS)/start/start.bash; \
+		./$(HELPER_SCRIPTS)/env/create.bash; \
+		./$(HELPER_SCRIPTS)/uploads/create-dir.bash; \
+		make help; \
+		./$(HELPER_SCRIPTS)/frontend/node_modules.bash; \
+	else \
+		make start; \
+	fi
 
 ## Start developing
 start:
