@@ -27,9 +27,9 @@ else
 	echo "  → E_STAGING_SSH_HOST=$E_STAGING_SSH_HOST"
 
 	# test ssh connection
-	status=$(ssh -o BatchMode=yes -o ConnectTimeout=5 $E_STAGING_SSH_USER@$E_STAGING_SSH_HOST echo ok 2>&1)
+	status=$(ssh -o ConnectTimeout=5 $E_STAGING_SSH_USER@$E_STAGING_SSH_HOST echo ok)
 
-	if [ "$status" = "ok" ]; then
+	if [[ "$status" == *ok ]]; then
 		echo
 		echo "$I18N_TASK Get database from ${GREEN}staging${NC}"
 		echo
