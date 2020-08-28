@@ -63,7 +63,7 @@ if [ -d "docker" ]; then
 fi
 
 # Identify 'Craft 3'
-if [ -d "site/config" ]; then
+if [ -f "site/craft" ]; then
   IDENT_CRAFT_3=true
 fi
 

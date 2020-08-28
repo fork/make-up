@@ -121,14 +121,18 @@ install-make-up:
 info:
 	@./$(HELPER_SCRIPTS)/info/info.bash
 
-## Initial project setup
+## Initial project setup or an alias for 'start' if the project was already set up
 up:
-	@touch .env
-	@./$(HELPER_SCRIPTS)/start/start.bash
-	@./$(HELPER_SCRIPTS)/env/create.bash
-	@./$(HELPER_SCRIPTS)/uploads/create-dir.bash
-	@make help
-	@./$(HELPER_SCRIPTS)/frontend/node_modules.bash
+	@if [ ! -f ".env" ]; then \
+		touch .env; \
+		./$(HELPER_SCRIPTS)/start/start.bash; \
+		./$(HELPER_SCRIPTS)/env/create.bash; \
+		./$(HELPER_SCRIPTS)/uploads/create-dir.bash; \
+		make help; \
+		./$(HELPER_SCRIPTS)/frontend/node_modules.bash; \
+	else \
+		make start; \
+	fi
 
 ## Start developing
 start:
@@ -143,6 +147,10 @@ stop:
 restart:
 	@make stop
 	@make start
+
+## Build
+build:
+	@./$(HELPER_SCRIPTS)/build/build.bash
 
 ## Run composer (Example: '$ make composer require foo/bar')
 composer:
