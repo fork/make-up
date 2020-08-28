@@ -198,173 +198,186 @@ if [ -f "$file" ]; then
     echo
   fi
 
-  # Ask for a value
-  VARIABLE_NAME="E_STAGING_SSH_USER"
-  DEFAULT_VALUE="USER"
-  QUESTION="Set SSH user for ${YELLOW}staging${NC}"
-
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+  # Ask if staging environment should be configured
+  echo "$I18N_QUESTION Do you want to configure your ${YELLOW}staging${NC} environment now? (yN)"
   read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+  if [ "$answer" = "y" ]; then
 
-  # Ask for a value
-  VARIABLE_NAME="E_STAGING_SSH_HOST"
-  DEFAULT_VALUE="HOST"
-  QUESTION="Set SSH host for ${YELLOW}staging${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_STAGING_SSH_USER"
+		DEFAULT_VALUE="USER"
+		QUESTION="Set SSH user for ${YELLOW}staging${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+
+		# Ask for a value
+		VARIABLE_NAME="E_STAGING_SSH_HOST"
+		DEFAULT_VALUE="HOST"
+		QUESTION="Set SSH host for ${YELLOW}staging${NC}"
+
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+
+		# Ask for a value
+		VARIABLE_NAME="E_STAGING_PROJECT_HOME"
+		DEFAULT_VALUE="PROJECT_HOME"
+		QUESTION="Set path to project home for ${YELLOW}staging${NC}"
+
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+
+		# Ask for a value
+		VARIABLE_NAME="E_STAGING_UPLOADS"
+		DEFAULT_VALUE="UPLOADS"
+		QUESTION="Set absolute path to uploads for ${YELLOW}staging${NC}"
+
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+
+		# Ask for a value
+		VARIABLE_NAME="E_STAGING_DB_PASS"
+		DEFAULT_VALUE="PASSWORD"
+		QUESTION="Set database password for ${YELLOW}staging${NC}"
+
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+
+		# Ask for a value
+		VARIABLE_NAME="E_STAGING_DB_USER"
+		DEFAULT_VALUE="DB_USER"
+		QUESTION="Set database user for ${YELLOW}staging${NC}"
+
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+
+		# Ask for a value
+		VARIABLE_NAME="E_STAGING_DB_NAME"
+		DEFAULT_VALUE="DB_NAME"
+		QUESTION="Set database name for ${YELLOW}staging${NC}"
+
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+	fi # of if [ "$answer" = "y" ];
+
+
+  # Ask if production environment should be configured
+  echo "$I18N_QUESTION Do you want to configure your ${GREEN}production${NC} environment now? (yN)"
   read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+  if [ "$answer" = "y" ]; then
 
-  # Ask for a value
-  VARIABLE_NAME="E_STAGING_PROJECT_HOME"
-  DEFAULT_VALUE="PROJECT_HOME"
-  QUESTION="Set path to project home for ${YELLOW}staging${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_PRODUCTION_SSH_USER"
+		DEFAULT_VALUE="USER"
+		QUESTION="Set SSH user for ${GREEN}production${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
 
-  # Ask for a value
-  VARIABLE_NAME="E_STAGING_UPLOADS"
-  DEFAULT_VALUE="UPLOADS"
-  QUESTION="Set absolute path to uploads for ${YELLOW}staging${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_PRODUCTION_SSH_HOST"
+		DEFAULT_VALUE="HOST"
+		QUESTION="Set SSH host for ${GREEN}production${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
 
-  # Ask for a value
-  VARIABLE_NAME="E_STAGING_DB_PASS"
-  DEFAULT_VALUE="PASSWORD"
-  QUESTION="Set database password for ${YELLOW}staging${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_PRODUCTION_PROJECT_HOME"
+		DEFAULT_VALUE="PROJECT_HOME"
+		QUESTION="Set path to project home for ${GREEN}production${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
 
-  # Ask for a value
-  VARIABLE_NAME="E_STAGING_DB_USER"
-  DEFAULT_VALUE="DB_USER"
-  QUESTION="Set database user for ${YELLOW}staging${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_PRODUCTION_UPLOADS"
+		DEFAULT_VALUE="UPLOADS"
+		QUESTION="Set absolute path to uploads for ${GREEN}production${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
 
-  # Ask for a value
-  VARIABLE_NAME="E_STAGING_DB_NAME"
-  DEFAULT_VALUE="DB_NAME"
-  QUESTION="Set database name for ${YELLOW}staging${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_PRODUCTION_DB_PASS"
+		DEFAULT_VALUE="PASSWORD"
+		QUESTION="Set database password for ${GREEN}production${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
 
-  # Ask for a value
-  VARIABLE_NAME="E_PRODUCTION_SSH_USER"
-  DEFAULT_VALUE="USER"
-  QUESTION="Set SSH user for ${GREEN}production${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_PRODUCTION_DB_USER"
+		DEFAULT_VALUE="DB_USER"
+		QUESTION="Set database user for ${GREEN}production${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
 
-  # Ask for a value
-  VARIABLE_NAME="E_PRODUCTION_SSH_HOST"
-  DEFAULT_VALUE="HOST"
-  QUESTION="Set SSH host for ${GREEN}production${NC}"
+		# Ask for a value
+		VARIABLE_NAME="E_PRODUCTION_DB_NAME"
+		DEFAULT_VALUE="DB_NAME"
+		QUESTION="Set database name for ${GREEN}production${NC}"
 
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
-
-  # Ask for a value
-  VARIABLE_NAME="E_PRODUCTION_PROJECT_HOME"
-  DEFAULT_VALUE="PROJECT_HOME"
-  QUESTION="Set path to project home for ${GREEN}production${NC}"
-
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
-
-  # Ask for a value
-  VARIABLE_NAME="E_PRODUCTION_UPLOADS"
-  DEFAULT_VALUE="UPLOADS"
-  QUESTION="Set absolute path to uploads for ${GREEN}production${NC}"
-
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
-
-  # Ask for a value
-  VARIABLE_NAME="E_PRODUCTION_DB_PASS"
-  DEFAULT_VALUE="PASSWORD"
-  QUESTION="Set database password for ${GREEN}production${NC}"
-
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
-
-  # Ask for a value
-  VARIABLE_NAME="E_PRODUCTION_DB_USER"
-  DEFAULT_VALUE="DB_USER"
-  QUESTION="Set database user for ${GREEN}production${NC}"
-
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
-
-  # Ask for a value
-  VARIABLE_NAME="E_PRODUCTION_DB_NAME"
-  DEFAULT_VALUE="DB_NAME"
-  QUESTION="Set database name for ${GREEN}production${NC}"
-
-  echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
-  read -p "  " answer
-  if [ -n "$answer" ]; then
-    sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
-    echo
-  fi
+		echo "$I18N_QUESTION $QUESTION (default: $DEFAULT_VALUE)"
+		read -p "  " answer
+		if [ -n "$answer" ]; then
+			sed 's#'"$VARIABLE_NAME"'='"$DEFAULT_VALUE"'#'"$VARIABLE_NAME"'='"$answer"'#' $file >tmp && mv tmp $file
+			echo
+		fi
+	fi # of if [ "$answer" = "y" ];
 
   # tell the user that he/she has to provide information for production
   echo "  ${WHITE}INFO${NC} Please visit $file and fill in missing information"
