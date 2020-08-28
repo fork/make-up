@@ -181,9 +181,13 @@ if [ -f "$file" ]; then
   # Replace some values to connect with docker database
   sed 's#DB_DSN=""#DB_DSN="mysql:host=db;port=3306;dbname=craft"#' $file >tmp && mv tmp $file # craft >= 3.4.0
   sed 's#DB_SERVER="localhost"#DB_SERVER="db"#' $file >tmp && mv tmp $file # craft < 3.4.0
+  sed 's#DB_SERVER=127.0.0.1#DB_SERVER=db#' $file >tmp && mv tmp $file # craft >= 3.5.0
   sed 's#DB_DATABASE=""#DB_DATABASE="craft"#' $file >tmp && mv tmp $file # craft < 3.4.0
+  sed 's#DB_DATABASE=#DB_DATABASE="craft"#' $file >tmp && mv tmp $file # craft >= 3.5.0
   sed 's#DB_USER="root"#DB_USER="craft"#' $file >tmp && mv tmp $file # craft >= 3.0.0
+  sed 's#DB_USER=root#DB_USER="craft"#' $file >tmp && mv tmp $file # craft >= 3.5.0
   sed 's#DB_PASSWORD=""#DB_PASSWORD="craft"#' $file >tmp && mv tmp $file # craft >= 3.0.0
+  sed 's#DB_PASSWORD=#DB_PASSWORD="craft"#' $file >tmp && mv tmp $file # craft >= 3.5.0
   sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX="craft"#' $file >tmp && mv tmp $file # craft >= 3.0.0
 
   # Ask for a value
