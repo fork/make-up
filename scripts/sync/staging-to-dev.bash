@@ -29,7 +29,7 @@ else
 	# test ssh connection
 	status=$(ssh -o ConnectTimeout=5 $E_STAGING_SSH_USER@$E_STAGING_SSH_HOST echo ok)
 
-	if [[ "$status" == *ok ]]; then
+	if [ "$status" = "ok" ]; then
 		echo
 		echo "$I18N_TASK Get database from ${GREEN}staging${NC}"
 		echo
