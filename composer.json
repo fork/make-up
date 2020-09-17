@@ -11,6 +11,6 @@
   "require": {
   },
   "scripts": {
-    "post-install-cmd": "make install-make-up"
+    "post-install-cmd": "cd vendor/fork/make-up && make install-make-up"
   }
 }
