@@ -9,5 +9,8 @@
     }
   ],
   "require": {
+  },
+  "scripts": {
+    "post-install-cmd": "make install-make-up"
   }
 }

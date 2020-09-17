@@ -13,7 +13,7 @@ ok=false
 YOUR_GIT_IGNORE=../.gitignore
 YOUR_ENV_FILE=../.env
 OUR_MAKEFILE=./Makefile
-YOUR_MAKEFILE=../Makefile
+YOUR_MAKEFILE=../../../Makefile
 
 # create Makefile
 if [ -f "$YOUR_MAKEFILE" ]; then
