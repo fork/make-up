@@ -10,8 +10,8 @@ echo
 
 ok=false
 
-YOUR_GIT_IGNORE=../.gitignore
-YOUR_ENV_FILE=../.env
+YOUR_GIT_IGNORE=../../../.gitignore
+YOUR_ENV_FILE=../../../.env
 OUR_MAKEFILE=./Makefile
 YOUR_MAKEFILE=../../../Makefile
 
@@ -40,7 +40,7 @@ fi
 
 # create reference to make-up/Makefile
 if [ -f "$YOUR_MAKEFILE" ]; then
-  STRING="include make-up/Makefile"
+  STRING="include vendor/fork/make-up/Makefile"
 
   echo
   echo "$I18N_TASK Create reference to $OUR_MAKEFILE in $YOUR_MAKEFILE"
