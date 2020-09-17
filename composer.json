@@ -1,0 +1,13 @@
+{
+  "name": "fork/make-up",
+  "description": "A useful set of make tasks for setting up a development environment with Docker.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fork Unstable Media GmbH",
+      "email": "obj@fork.de"
+    }
+  ],
+  "require": {
+  }
+}
