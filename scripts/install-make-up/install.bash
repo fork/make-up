@@ -40,7 +40,7 @@ fi
 
 # create reference to make-up/Makefile
 if [ -f "$YOUR_MAKEFILE" ]; then
-  STRING="include vendor/fork/make-up/Makefile"
+  STRING="include make-up/Makefile"
 
   echo
   echo "$I18N_TASK Create reference to $OUR_MAKEFILE in $YOUR_MAKEFILE"
