@@ -7,10 +7,5 @@
       "name": "Fork Unstable Media GmbH",
       "email": "obj@fork.de"
     }
-  ],
-  "require": {
-  },
-  "scripts": {
-    "post-install-cmd": "cd vendor/fork/make-up && make install-make-up"
-  }
+  ]
 }
