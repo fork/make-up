@@ -1,3 +1,9 @@
+<div align="center">
+  <a href="https://www.fork.de">
+    <img src="./assets/fork-logo.png" width="156" height="30" alt="Fork Logo" />
+  </a>
+</div>
+
 # Make-up
 
 ![Image](static/make-up.jpg)
@@ -13,7 +19,7 @@
 
 By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity 🎨.
 
-No matter what project you are working on, no matter what software is used: 
+No matter what project you are working on, no matter what software is used:
 
 💋💄 _Make-up_ will **make it work** (@see [Make-up works with](#make-up-works-with)).
 
@@ -95,10 +101,10 @@ And [so much more](#features).
 
 ### Tested Shells
 
-| Name     | Version |
-| -------- | ------- |
-| [Terminal](https://de.wikipedia.org/wiki/Terminal_(Apple)) | 2.9.5   |
-| [iTerm2](https://iterm2.com/)   | 3.3.7   |
+| Name                                                         | Version |
+| ------------------------------------------------------------ | ------- |
+| [Terminal](<https://de.wikipedia.org/wiki/Terminal_(Apple)>) | 2.9.5   |
+| [iTerm2](https://iterm2.com/)                                | 3.3.7   |
 
 ## Features
 
@@ -317,7 +323,7 @@ chmod +x foo.bash
 | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 'HTTP 503 – Service Unavailable' after install | ❓ If you installed Craft 3 and visit your sites Frontend, you will get a 503 error. <hr> ✅ Visit your sites Backend and follow the instructions. <hr> 💡 Use `$ make info` to get the URLs for Front- and Backend. |
 | 'HTTP 503 – Service Unavailable' after sync    | ❓ This error can also show up if you sync between environments. <hr> ✅ Restart the sync process.                                                                                                                   |
-| Invalid working directory specified    | ❓ During installation this error message may come up: `Invalid working directory specified, /var/www/html does not exist.` <hr> ✅ Remove all docker containers and restart the project.                                                                                                                   |
+| Invalid working directory specified            | ❓ During installation this error message may come up: `Invalid working directory specified, /var/www/html does not exist.` <hr> ✅ Remove all docker containers and restart the project.                            |
 
 ---
 
@@ -329,4 +335,8 @@ chmod +x foo.bash
 
 ---
 
-Brought to you by [4rk](https://fork.de) – 02/2020
+<div align="center">
+  <img src="./assets/heart.png" width="38" height="41" alt="Fork Logo" />
+
+  <p>Brought to you by <a href="https://www.fork.de">Fork Unstable Media GmbH</a></p>
+</div>
