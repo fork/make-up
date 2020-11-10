@@ -11,7 +11,7 @@ echo
 ok=false
 
 if [ "$IDENT_DOCKER" = true ]; then
-  docker-compose exec php composer --working-dir=/var/www/html $1
+  docker-compose exec "${DOCKER_CRAFT_SERVICE:-php}" composer --working-dir=/var/www/html $1
 
   echo
   echo "$I18N_SUCCESS Done"

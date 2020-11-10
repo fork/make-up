@@ -11,7 +11,7 @@ echo
 ok=false
 
 if [ "$IDENT_DOCKER" = true ]; then
-  docker-compose exec php /bin/sh
+  docker-compose exec "${DOCKER_CRAFT_SERVICE:-php}" /bin/sh
 
   echo
   echo "$I18N_SUCCESS Done"
