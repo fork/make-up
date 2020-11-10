@@ -11,7 +11,9 @@ echo
 ok=false
 
 if [ "$IDENT_DOCKER" = true ]; then
-  docker ps | grep -q nginx-proxy || $my_dir/proxyup.bash
+	if [ "${DISABLE_PROXY:-false}" = false ]; then
+	  docker ps | grep -q nginx-proxy || $my_dir/proxyup.bash
+	fi
   docker-compose up -d
 
   # install Craft 3 if not found
