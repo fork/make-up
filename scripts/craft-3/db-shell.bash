@@ -28,7 +28,7 @@ if [ "$IDENT_DOCKER" = true ]; then
     echo "  → DB_DATABASE=$DB_DATABASE"
     echo "  → DB_PASSWORD=$DB_PASSWORD"
   else
-    docker-compose exec db $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE
+    docker-compose exec ${DOCKER_DB_SERVICE:-db} $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE
   fi
 
   echo

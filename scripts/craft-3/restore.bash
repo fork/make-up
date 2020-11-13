@@ -48,7 +48,7 @@ if [ "$IDENT_DOCKER" = true ]; then
     gzip -d -c $DUMP_NAME >temp.sql.tmp
 
     # import
-    docker exec -i $(docker-compose ps -q db) $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE <temp.sql.tmp
+    docker exec -i $(docker-compose ps -q ${DOCKER_DB_SERVICE:-db}) $DB_DRIVER -u$DB_USER -p$DB_PASSWORD -h$DB_SERVER $DB_DATABASE <temp.sql.tmp
 
     # remove temporary files
     rm temp.sql.tmp
