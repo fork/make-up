@@ -14,7 +14,7 @@ if [ "$IDENT_DOCKER" = true ]; then
 	if [ "${DISABLE_PROXY:-false}" = false ]; then
 	  docker ps | grep -q nginx-proxy || $my_dir/proxyup.bash
 	fi
-  docker-compose up -d
+  docker-compose up -d $ADDITIONAL_UP_ARGS
 
   # install Craft 3 if not found
   if [ ! "$IDENT_CRAFT_3" = true ]; then
