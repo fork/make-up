@@ -11,7 +11,7 @@ echo
 ok=false
 
 if [ "$IDENT_DOCKER" = true ]; then
-  docker-compose exec "${DOCKER_CRAFT_SERVICE:-php}" composer --working-dir=/var/www/html install
+  docker-compose exec "${DOCKER_CRAFT_SERVICE:-craft}" composer --working-dir=/var/www/html install
 
   if [ -d "site/vendor" ]; then
     echo

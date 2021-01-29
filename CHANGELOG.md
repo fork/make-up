@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3.3] - 2021-01-29
+
+## Changed
+
+- Changed craft docker image name to new release
+
 ## [v0.0.3.2] - 2020-08-28
 
-## Added 
+## Added
 
 - reworked make info and make deploy when displaying information about the git repository (tested with gitlab)
 - completed task description for 'make up'
@@ -28,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.0.3.1] - 2020-05-29
 
-## Added 
+## Added
 
 - allow docker service for db sync
 - define PROJECT_NAME based on git name if available/already existing project
@@ -39,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.0.3.0] - 2019-02-06
 
-## Added 
+## Added
 
 - Variables to identify certain software such as 'craft 3' or 'npm' in [helper.bash](helper.bash) that can be used in bash-scripts to prevent code from being executed if a specific software is installed - or not.
 - Variables `I18N_INFO` and `I18N_QUESTION` in [helper.bash](helper.bash)
@@ -59,7 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- _frontend/node\_modules_ now tries `$ npm run dev` and `$ npm start` automatically
+- _frontend/node_modules_ now tries `$ npm run dev` and `$ npm start` automatically
 - Changed syntax `${BLUE}TASK${NC}` to `$I18N_TASK` (for 'task', 'success', 'warning', 'error')
 - Craft now creates a reference to _site/.env_ in _.env_ automatically
 
@@ -81,7 +87,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.0.2] - 2019-01-30
 
-### Added 
+### Added
 
 - Support for Craft CMS 3.4.1
 - Added user feedback for missing data in .env files for database connections within docker
