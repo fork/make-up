@@ -19,8 +19,8 @@ if [ ! "$IDENT_CRAFT_3" = true ]; then
       echo
       echo "$I18N_TASK 'Craft 3' → Installing..."
       echo
-      docker-compose exec php composer create-project craftcms/craft /var/www/html
-      docker-compose exec php composer --working-dir=/var/www/html require --dev squizlabs/php_codesniffer
+      docker-compose exec craft composer create-project craftcms/craft /var/www/html
+      docker-compose exec craft composer --working-dir=/var/www/html require --dev squizlabs/php_codesniffer
     else
       echo
       echo "$I18N_ERROR Docker is required to run this command"
