@@ -89,7 +89,7 @@ ENV_FILE=$(ORIGINAL_ENV_FILE) # this can be overwritten in my-project/.env
 ifneq ("$(wildcard $(ORIGINAL_ENV_FILE))","")
 include $(ORIGINAL_ENV_FILE)
 VARS:=$(shell sed -ne 's/ *\#.*$$//; /./ s/=.*$$// p' $(ORIGINAL_ENV_FILE) )
-$(foreach v,$(VARS),$(eval $(shell echo export $(v)="$($(v))")))
+$(foreach v,$(VARS),$(eval $(shell echo export $(v)='$($(v))')))
 endif
 
 # Overwrite path to ENV_FILE
@@ -102,7 +102,7 @@ endif
 ifneq ("$(wildcard $(ENV_FILE))","")
 include $(ENV_FILE)
 VARS:=$(shell sed -ne 's/ *\#.*$$//; /./ s/=.*$$// p' $(ENV_FILE) )
-$(foreach v,$(VARS),$(eval $(shell echo export $(v)="$($(v))")))
+$(foreach v,$(VARS),$(eval $(shell echo export $(v)='$($(v))')))
 endif
 
 ##############
