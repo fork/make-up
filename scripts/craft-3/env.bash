@@ -26,7 +26,7 @@ envDev() {
 E_DEV_UPLOADS=$INITIAL_UPLOADS
 
 # Default Site URL
-DEFAULT_SITE_URL="http://$PROJECT_NAME.localhost"
+DEFAULT_SITE_URL=http://$PROJECT_NAME.localhost
 EOF
 }
 
@@ -138,12 +138,17 @@ else
   echo
 fi
 
-if [ -f "$file" ]; then
+# check if .env needs to be setup (e.g. DEFAULT_SITE_URL has not been set by make-up)
+if [ -f "$file" ] && ! grep -Fxq "DEFAULT_SITE_URL" $file; then
   echo
   echo "$I18N_TASK Generating a security key in $file"
 
   # Generating a security key
-  ./site/craft setup/security-key
+  if [ "$IDENT_DOCKER" = true ]; then
+    docker-compose exec "${DOCKER_CRAFT_SERVICE:-craft}" ./craft setup/security-key
+  else
+    ./site/craft setup/security-key
+  fi
 
   echo
   echo "$I18N_SUCCESS Done"
@@ -163,7 +168,7 @@ if [ -f "$file" ]; then
     # Craft CMS >= 3.4.0
     env340
   fi
-  
+
   # Add information for environment 'staging'
   envStaging
 
@@ -179,16 +184,16 @@ if [ -f "$file" ]; then
   echo
 
   # Replace some values to connect with docker database
-  sed 's#DB_DSN=""#DB_DSN="mysql:host=db;port=3306;dbname=craft"#' $file >tmp && mv tmp $file # craft >= 3.4.0
-  sed 's#DB_SERVER="localhost"#DB_SERVER="db"#' $file >tmp && mv tmp $file # craft < 3.4.0
+  sed 's#DB_DSN=""#DB_DSN=mysql:host=db;port=3306;dbname=craft#' $file >tmp && mv tmp $file # craft >= 3.4.0
+  sed 's#DB_SERVER="localhost"#DB_SERVER=db#' $file >tmp && mv tmp $file # craft < 3.4.0
   sed 's#DB_SERVER=127.0.0.1#DB_SERVER=db#' $file >tmp && mv tmp $file # craft >= 3.5.0
-  sed 's#DB_DATABASE=""#DB_DATABASE="craft"#' $file >tmp && mv tmp $file # craft < 3.4.0
-  sed 's#DB_DATABASE=#DB_DATABASE="craft"#' $file >tmp && mv tmp $file # craft >= 3.5.0
-  sed 's#DB_USER="root"#DB_USER="craft"#' $file >tmp && mv tmp $file # craft >= 3.0.0
-  sed 's#DB_USER=root#DB_USER="craft"#' $file >tmp && mv tmp $file # craft >= 3.5.0
-  sed 's#DB_PASSWORD=""#DB_PASSWORD="craft"#' $file >tmp && mv tmp $file # craft >= 3.0.0
-  sed 's#DB_PASSWORD=#DB_PASSWORD="craft"#' $file >tmp && mv tmp $file # craft >= 3.5.0
-  sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX="craft"#' $file >tmp && mv tmp $file # craft >= 3.0.0
+  sed 's#DB_DATABASE=""#DB_DATABASE=craft#' $file >tmp && mv tmp $file # craft < 3.4.0
+  sed 's#DB_DATABASE=#DB_DATABASE=craft#' $file >tmp && mv tmp $file # craft >= 3.5.0
+  sed 's#DB_USER="root"#DB_USER=craft#' $file >tmp && mv tmp $file # craft >= 3.0.0
+  sed 's#DB_USER=root#DB_USER=craft#' $file >tmp && mv tmp $file # craft >= 3.5.0
+  sed 's#DB_PASSWORD=""#DB_PASSWORD=craft#' $file >tmp && mv tmp $file # craft >= 3.0.0
+  sed 's#DB_PASSWORD=#DB_PASSWORD=craft#' $file >tmp && mv tmp $file # craft >= 3.5.0
+  sed 's#DB_TABLE_PREFIX=""#DB_TABLE_PREFIX=craft#' $file >tmp && mv tmp $file # craft >= 3.0.0
 
   # Ask for a value
   VARIABLE_NAME="E_DEV_UPLOADS"
