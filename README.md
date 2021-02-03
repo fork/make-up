@@ -1,12 +1,6 @@
-<div align="center">
-  <a href="https://www.fork.de">
-    <img src="./assets/fork-logo.png" width="156" height="30" alt="Fork Logo" />
-  </a>
+<div align="left">
+    <img width="600" title="React Patterns" src="http://github.fork.de/MakeUp_020221.svg">
 </div>
-
-# Make-up
-
-![Image](static/make-up.jpg)
 
 **Being a web developer is hard.** You often find yourself asking stuff like:
 
@@ -19,9 +13,7 @@
 
 By covering all necessary requirements for the development process **automatically**, _Make-up_ gives you more time for creativity 🎨.
 
-No matter what project you are working on, no matter what software is used:
-
-💋💄 _Make-up_ will **make it work** (@see [Make-up works with](#make-up-works-with)).
+No matter what project you are working on, no matter what software is used. @see [Make-up works with](#make-up-works-with)
 
 ---
 

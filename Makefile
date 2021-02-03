@@ -183,6 +183,10 @@ staging-to-dev:
 production-to-dev:
 	@./$(HELPER_SCRIPTS)/sync/production-to-dev.bash
 
+## (Re-)build .env
+env:
+	@./$(HELPER_SCRIPTS)/env/create.bash
+
 ## Run tests
 test:
 	@./$(HELPER_SCRIPTS)/test/env.bash
