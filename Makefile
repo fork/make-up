@@ -137,7 +137,6 @@ up:
 ## Start developing
 start:
 	@./$(HELPER_SCRIPTS)/start/start.bash
-	@./$(HELPER_SCRIPTS)/frontend/node_modules.bash
 
 ## Stop developing
 stop:
