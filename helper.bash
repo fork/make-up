@@ -58,7 +58,7 @@ I18N_QUESTION="  ${MAGENTA}QUESTION${NC}"
 # Software identifier
 
 # Identify 'Docker'
-if [ -d "docker" ]; then
+if [ -f "docker-compose.yml" ]; then
   IDENT_DOCKER=true
 fi
 
