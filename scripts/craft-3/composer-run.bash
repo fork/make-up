@@ -11,17 +11,17 @@ echo
 ok=false
 
 if [ "$IDENT_DOCKER" = true ]; then
-  docker-compose exec "${DOCKER_CRAFT_SERVICE:-craft}" composer --working-dir=/var/www/html $1
+  docker-compose exec "${DOCKER_CRAFT_SERVICE:-craft}" composer --working-dir="${DOCKER_WORKING_DIR:-/var/www/html}" $1
 
   echo
   echo "$I18N_SUCCESS Done"
-  echo  
-  
+  echo
+
   ok=true
 else
   echo
   echo "$I18N_ERROR Docker is required to run this command"
-  echo  
+  echo
 fi
 
 # more-make-up

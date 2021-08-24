@@ -11,7 +11,7 @@ echo
 ok=false
 
 if [ "$IDENT_DOCKER" = true ]; then
-  docker-compose exec "${DOCKER_CRAFT_SERVICE:-craft}" composer --working-dir=/var/www/html install
+  docker-compose exec "${DOCKER_CRAFT_SERVICE:-craft}" composer --working-dir="${DOCKER_WORKING_DIR:-/var/www/html}" install
 
   if [ -d "site/vendor" ]; then
     echo
@@ -23,12 +23,12 @@ if [ "$IDENT_DOCKER" = true ]; then
     echo "$I18N_ERROR Could not verify composer installation: site/vendor not found."
     echo
   fi
-  
+
   ok=true
 else
   echo
   echo "$I18N_ERROR Docker is required to run this command"
-  echo  
+  echo
 fi
 
 # more-make-up
