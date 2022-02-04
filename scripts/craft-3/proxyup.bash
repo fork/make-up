@@ -11,7 +11,7 @@ echo
 ok=false
 
 if [ "$IDENT_DOCKER" = true ]; then
-  cd / && curl https://lab.fork.de/snippets/3/raw | docker-compose -f - up -d || docker start nginx-proxy
+  cd / && curl https://lab.fork.de/snippets/3/raw | docker-compose -p default -f - up -d || docker start nginx-proxy
 
   echo
   echo "$I18N_SUCCESS Done"
